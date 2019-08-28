@@ -8,14 +8,16 @@ namespace Omnipay\ZarinPal;
 
 use Omnipay\Common\AbstractGateway;
 use Omnipay\Common\Message\AbstractRequest;
+use Omnipay\Common\Message\RequestInterface;
 use Omnipay\ZarinPal\Message\RestPurchaseRequest;
 use phpDocumentor\Reflection\Types\Boolean;
 
 /**
+ * Class RestGateway
+ * @package Omnipay\ZarinPal
  * @method \Omnipay\Common\Message\RequestInterface authorize(array $options = array())
  * @method \Omnipay\Common\Message\RequestInterface completeAuthorize(array $options = array())
  * @method \Omnipay\Common\Message\RequestInterface capture(array $options = array())
- * @method \Omnipay\Common\Message\RequestInterface completePurchase(array $options = array())
  * @method \Omnipay\Common\Message\RequestInterface refund(array $options = array())
  * @method \Omnipay\Common\Message\RequestInterface void(array $options = array())
  * @method \Omnipay\Common\Message\RequestInterface createCard(array $options = array())
@@ -24,20 +26,6 @@ use phpDocumentor\Reflection\Types\Boolean;
  */
 class RestGateway extends AbstractGateway
 {
-    /**
-     * Main gateway url
-     *
-     * @var string
-     */
-    const MAIN_URL = 'https://www.zarinpal.com/pg/rest/WebGate/PaymentRequest.json';
-
-    /**
-     * Test gateway url
-     *
-     * @var string
-     */
-    const TEST_URL = 'https://sandbox.zarinpal.com/pg/rest/WebGate/PaymentRequest.json';
-
     /**
      * Get gateway display name
      *
@@ -57,10 +45,7 @@ class RestGateway extends AbstractGateway
     public function getDefaultParameters()
     {
         return [
-            'testMode' => false,
-            'endpoint' => self::TEST_URL,
-            'MerchantID' => '',
-            'CallbackURL' => '',
+            'merchantId' => '',
         ];
     }
 
@@ -69,26 +54,36 @@ class RestGateway extends AbstractGateway
      */
     public function getMerchantId()
     {
-        return $this->getParameter('MerchantID');
+        return $this->getParameter('merchantId');
     }
+
     /**
      * @param string $value
      * @return RestGateway
      */
     public function setMerchantId(string $value)
     {
-        return $this->setParameter('MerchantID', $value);
+        return $this->setParameter('merchantId', $value);
     }
 
     /**
      * Purchase request
      *
      * @param array $parameters
-     * @return AbstractRequest
+     * @return RequestInterface
      */
-    public function purchase(array $parameters = []): AbstractRequest
+    public function purchase(array $parameters = [])
     {
         return $this->createRequest(RestPurchaseRequest::class, $parameters);
+    }
+
+    /**
+     * @param array $parameters
+     * @return RequestInterface
+     */
+    public function completePurchase(array $parameters = [])
+    {
+        return $this->createRequest(RestCompletePurchaseRequest::class, $parameters);
     }
 
     public function __call($name, $arguments)
@@ -96,8 +91,6 @@ class RestGateway extends AbstractGateway
         // TODO: Implement @method \Omnipay\Common\Message\RequestInterface authorize(array $options = array())
         // TODO: Implement @method \Omnipay\Common\Message\RequestInterface completeAuthorize(array $options = array())
         // TODO: Implement @method \Omnipay\Common\Message\RequestInterface capture(array $options = array())
-        // TODO: Implement @method \Omnipay\Common\Message\RequestInterface purchase(array $options = array())
-        // TODO: Implement @method \Omnipay\Common\Message\RequestInterface completePurchase(array $options = array())
         // TODO: Implement @method \Omnipay\Common\Message\RequestInterface refund(array $options = array())
         // TODO: Implement @method \Omnipay\Common\Message\RequestInterface void(array $options = array())
         // TODO: Implement @method \Omnipay\Common\Message\RequestInterface createCard(array $options = array())

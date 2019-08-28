@@ -4,29 +4,29 @@
  * @author Milad Nekofar <milad@nekofar.com>
  */
 
-namespace Omnipay\ZarinPal\Message;
+namespace Omnipay\ZarinPal;
 
-use Omnipay\Common\Message\ResponseInterface;
+use Omnipay\Common\Exception\InvalidRequestException;
+use Omnipay\ZarinPal\Message\AbstractRequest;
 
 /**
- * Class PurchaseRequest
+ * Class RestCompletePurchaseRequest
  */
-class RestPurchaseRequest extends AbstractRequest
+class RestCompletePurchaseRequest extends AbstractRequest
 {
     /**
      * Get the raw data array for this message. The format of this varies from gateway to
      * gateway, but will usually be either an associative array, or a SimpleXMLElement.
      *
      * @return mixed
+     * @throws InvalidRequestException
      */
     public function getData()
     {
-        $data = [
-            'merchantId' => $this->getMerchantId(),
-            'returnUrl' => $this->getReturnUrl(),
-            'amount' => 100,
-            'description' => $this->getDescription()
-        ];
+        parent::getData();
+
+        $data = $this->httpRequest->request->all();
+
         return $data;
     }
 
@@ -34,10 +34,10 @@ class RestPurchaseRequest extends AbstractRequest
      * Send the request with specified data
      *
      * @param mixed $data The data to send.
-     * @return ResponseInterface
+     * @return RestCompletePurchaseResponse
      */
     public function sendData($data)
     {
-        return $this->response = new RestPurchaseResponse($this, $data);
+        return $this->response = new RestCompletePurchaseResponse($this, $data);
     }
 }
