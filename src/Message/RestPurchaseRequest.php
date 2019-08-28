@@ -6,13 +6,12 @@
 
 namespace Omnipay\ZarinPal\Message;
 
-use Omnipay\Common\Message\AbstractRequest;
-use Omnipay\Common\Message\ResponseInterface;
+use Omnipay\ZarinPal\RestAuthorizeRequest;
 
 /**
  * Class PurchaseRequest
  */
-class RestPurchaseRequest extends AbstractRequest
+class RestPurchaseRequest extends RestAuthorizeRequest
 {
     /**
      * Get the raw data array for this message. The format of this varies from gateway to
@@ -22,17 +21,7 @@ class RestPurchaseRequest extends AbstractRequest
      */
     public function getData()
     {
-        // TODO: Implement getData() method.
-    }
-
-    /**
-     * Send the request with specified data
-     *
-     * @param mixed $data The data to send.
-     * @return void
-     */
-    public function sendData($data)
-    {
-        // TODO: Implement sendData() method.
+        $data = parent::getData();
+        return $data;
     }
 }
