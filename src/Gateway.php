@@ -28,6 +28,34 @@ class Gateway extends AbstractGateway
     }
 
     /**
+     * @return array
+     */
+    public function getDefaultParameters()
+    {
+        return [
+            'testMode' => false,
+            'merchantId',
+        ];
+    }
+
+    /**
+     * @return string
+     */
+    public function getMerchantId()
+    {
+        return $this->getParameter('merchantId');
+    }
+
+    /**
+     * @param string $value
+     * @return Gateway
+     */
+    public function setMerchantId(string $value)
+    {
+        return $this->setParameter('merchantId', $value);
+    }
+
+    /**
      * @param array $parameters
      * @return AbstractRequest|RequestInterface
      */
