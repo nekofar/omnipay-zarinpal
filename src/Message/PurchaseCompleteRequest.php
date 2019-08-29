@@ -6,10 +6,7 @@
 
 namespace Omnipay\ZarinPal\Message;
 
-use Exception;
 use Omnipay\Common\Exception\InvalidRequestException;
-use Omnipay\Common\Exception\InvalidResponseException;
-use Omnipay\Common\Message\ResponseInterface;
 
 /**
  * Class PurchaseCompleteRequest
@@ -45,37 +42,16 @@ class PurchaseCompleteRequest extends AbstractRequest
         return [
             'MerchantID' => $this->getMerchantId(),
             'Amount' => $this->getAmount() ? $this->getAmount() : $this->httpRequest->query->get('Amount'),
-            'Authority' => $this->getAuthority() ? $this->getAuthority() : $this->httpRequest->query->get('Amount'),
+            'Authority' => $this->getAuthority() ? $this->getAuthority() : $this->httpRequest->query->get('Authority'),
         ];
     }
 
     /**
-     * Send the request with specified data
-     *
-     * @param mixed $data The data to send.
-     * @return ResponseInterface
-     * @throws InvalidResponseException
+     * @param array $data
+     * @return mixed
      */
-    public function sendData($data)
+    protected function createResponse(array $data)
     {
-        try {
-            $httpResponse = $this->httpClient->request(
-                'POST',
-                $this->getEndpoint(),
-                [
-                    'Accept' => 'application/json',
-                    'Content-type' => 'application/json',
-                ],
-                json_encode($data)
-            );
-            $json = $httpResponse->getBody()->getContents();
-            $data = !empty($json) ? json_decode($json, true) : [];
-            return $this->response = new PurchaseCompleteResponse($this, $data);
-        } catch (Exception $e) {
-            throw new InvalidResponseException(
-                'Error communicating with payment gateway: ' . $e->getMessage(),
-                $e->getCode()
-            );
-        }
+        return new PurchaseCompleteResponse($this, $data);
     }
 }
