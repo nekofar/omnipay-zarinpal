@@ -38,16 +38,6 @@ class PurchaseResponse extends AbstractResponse implements RedirectResponseInter
     }
 
     /**
-     * Response code
-     *
-     * @return null|string A response code from the payment gateway
-     */
-    public function getCode()
-    {
-        return $this->data['Status'];
-    }
-
-    /**
      * Does the response require a redirect?
      *
      * @return boolean

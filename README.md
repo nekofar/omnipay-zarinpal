@@ -23,8 +23,8 @@ $gateway->setMerchantId('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx');
 $gateway->setReturnUrl('https://www.example.com/return');
 
 $response = $gateway->purchase([
-'amount' => 100,
-'description' => 'Somthing'
+    'amount' => 100,
+    'description' => 'Somthing'
 ])->send();
 
 if ($response->isRedirect()) {

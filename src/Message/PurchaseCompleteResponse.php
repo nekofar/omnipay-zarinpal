@@ -18,17 +18,7 @@ class PurchaseCompleteResponse extends AbstractResponse
      */
     public function isSuccessful()
     {
-        return $this->data['Status'] === 100;
-    }
-
-    /**
-     * Response code
-     *
-     * @return null|string A response code from the payment gateway
-     */
-    public function getCode()
-    {
-        return $this->data['Status'];
+        return $this->getCode() === 100;
     }
 
     /**
