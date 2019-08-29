@@ -18,27 +18,38 @@ Just want to see some code?
 ```php
 use Omnipay\Omnipay;
 
-$gateway = Omnipay::create('ZarinPal REST');
+$gateway = Omnipay::create('ZarinPal');
 $gateway->setMerchantId('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx');
 $gateway->setReturnUrl('https://www.example.com/return');
 
+// Send purchase request
 $response = $gateway->purchase([
     'amount' => 100,
-    'description' => 'Somthing'
+    'description' => 'Some description'
 ])->send();
 
+// Process response
 if ($response->isRedirect()) {
-    // redirect to offsite payment gateway
+    // Redirect to offsite payment gateway
     $response->redirect();
 } else {
-    // payment failed: display message to customer
+    // Payment failed: display message to customer
     echo $response->getMessage();
 }
 ```
 
 ```php
 $response = $gateway->completePurchase([
-    'Authority' => '123', 
-    'Amount' => 100
+    'amount' => 100,
+    'authority' => $_REQUEST['Authority'], 
 )->send();
+
+// Process response
+if ($response->isSuccessful()) {
+    // Payment was successful
+    print_r($response);
+} else {
+    // Payment failed: display message to customer
+    echo $response->getMessage();
+}
 ```
