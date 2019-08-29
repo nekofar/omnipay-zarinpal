@@ -57,6 +57,15 @@ class Gateway extends AbstractGateway
     }
 
     /**
+     * @param string $value
+     * @return $this
+     */
+    public function setReturnUrl(string $value)
+    {
+        return $this->setParameter('returnUrl', $value);
+    }
+
+    /**
      * @param array $parameters
      * @return AbstractRequest|RequestInterface
      */
@@ -69,7 +78,7 @@ class Gateway extends AbstractGateway
      * @param array $parameters
      * @return AbstractRequest|RequestInterface
      */
-    public function completePurchase(array $parameters)
+    public function completePurchase(array $parameters = [])
     {
         return $this->createRequest(PurchaseCompleteRequest::class, $parameters);
     }
