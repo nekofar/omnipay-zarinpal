@@ -7,6 +7,7 @@
 namespace Omnipay\ZarinPal\Message;
 
 use Exception;
+use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Common\Exception\InvalidResponseException;
 use Omnipay\Common\Message\ResponseInterface;
 
@@ -31,6 +32,17 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 
     /**
      * @return string
+     * @throws InvalidRequestException
+     */
+    public function getAmount()
+    {
+        $value = parent::getAmount();
+        $value = $value ?: $this->httpRequest->query->get('Amount');
+        return $value;
+    }
+
+    /**
+     * @return string
      */
     public function getMerchantId()
     {
@@ -42,7 +54,9 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      */
     public function getAuthority()
     {
-        return $this->getParameter('authority');
+        $value = $this->getParameter('authority');
+        $value = $value ?: $this->httpRequest->query->get('Authority');
+        return $value;
     }
 
     /**

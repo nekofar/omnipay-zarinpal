@@ -41,8 +41,8 @@ class PurchaseCompleteRequest extends AbstractRequest
 
         return [
             'MerchantID' => $this->getMerchantId(),
-            'Amount' => $this->getAmount() ? $this->getAmount() : $this->httpRequest->query->get('Amount'),
-            'Authority' => $this->getAuthority() ? $this->getAuthority() : $this->httpRequest->query->get('Authority'),
+            'Amount' => $this->getAmount(),
+            'Authority' => $this->getAuthority(),
         ];
     }
 
