@@ -6,8 +6,6 @@
 
 namespace Omnipay\ZarinPal\Message;
 
-use Omnipay\Common\Message\AbstractResponse;
-
 /**
  * Class PurchaseCompleteResponse
  */

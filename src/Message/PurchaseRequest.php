@@ -9,7 +9,6 @@ namespace Omnipay\ZarinPal\Message;
 use Exception;
 use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Common\Exception\InvalidResponseException;
-use Omnipay\Common\Message\AbstractRequest;
 use Omnipay\Common\Message\ResponseInterface;
 
 /**

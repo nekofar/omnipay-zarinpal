@@ -6,7 +6,6 @@
 
 namespace Omnipay\ZarinPal\Message;
 
-use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\RedirectResponseInterface;
 
 /**
