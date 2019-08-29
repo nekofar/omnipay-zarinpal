@@ -34,16 +34,6 @@ abstract class AbstractResponse extends \Omnipay\Common\Message\AbstractResponse
     ];
 
     /**
-     * Response code
-     *
-     * @return null|string A response code from the payment gateway
-     */
-    public function getCode()
-    {
-        return $this->data['Status'];
-    }
-
-    /**
      * Response Message
      *
      * @return null|string A response message from the payment gateway
@@ -51,5 +41,15 @@ abstract class AbstractResponse extends \Omnipay\Common\Message\AbstractResponse
     public function getMessage()
     {
         return $this->errorCodes[$this->getCode()];
+    }
+
+    /**
+     * Response code
+     *
+     * @return null|string A response code from the payment gateway
+     */
+    public function getCode()
+    {
+        return $this->data['Status'];
     }
 }

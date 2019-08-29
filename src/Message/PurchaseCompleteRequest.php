@@ -6,6 +6,7 @@
 
 namespace Omnipay\ZarinPal\Message;
 
+use Exception;
 use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Common\Exception\InvalidResponseException;
 use Omnipay\Common\Message\ResponseInterface;
@@ -15,7 +16,6 @@ use Omnipay\Common\Message\ResponseInterface;
  */
 class PurchaseCompleteRequest extends AbstractRequest
 {
-
     /**
      * Sandbox Endpoint URL
      *
@@ -50,22 +50,6 @@ class PurchaseCompleteRequest extends AbstractRequest
     }
 
     /**
-     * @return string
-     */
-    public function getMerchantId()
-    {
-        return $this->getParameter('merchantId');
-    }
-
-    /**
-     * @return string
-     */
-    public function getAuthority()
-    {
-        return $this->getParameter('authority');
-    }
-
-    /**
      * Send the request with specified data
      *
      * @param mixed $data The data to send.
@@ -87,37 +71,11 @@ class PurchaseCompleteRequest extends AbstractRequest
             $json = $httpResponse->getBody()->getContents();
             $data = !empty($json) ? json_decode($json, true) : [];
             return $this->response = new PurchaseCompleteResponse($this, $data);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw new InvalidResponseException(
                 'Error communicating with payment gateway: ' . $e->getMessage(),
                 $e->getCode()
             );
         }
-    }
-
-    /**
-     * @return string
-     */
-    protected function getEndpoint()
-    {
-        return $this->getTestMode() ? $this->testEndpoint : $this->liveEndpoint;
-    }
-
-    /**
-     * @param string $value
-     * @return PurchaseCompleteRequest
-     */
-    public function setMerchantId(string $value)
-    {
-        return $this->setParameter('merchantId', $value);
-    }
-
-    /**
-     * @param string $value
-     * @return PurchaseCompleteRequest
-     */
-    public function setAuthority(string $value)
-    {
-        return $this->setParameter('authority', $value);
     }
 }

@@ -53,14 +53,6 @@ class PurchaseRequest extends AbstractRequest
     }
 
     /**
-     * @return string
-     */
-    public function getMerchantId()
-    {
-        return $this->getParameter('merchantId');
-    }
-
-    /**
      * Send the request with specified data
      *
      * @param mixed $data The data to send.
@@ -88,22 +80,5 @@ class PurchaseRequest extends AbstractRequest
                 $e->getCode()
             );
         }
-    }
-
-    /**
-     * @return string
-     */
-    protected function getEndpoint()
-    {
-        return $this->getTestMode() ? $this->testEndpoint : $this->liveEndpoint;
-    }
-
-    /**
-     * @param string $value
-     * @return PurchaseRequest
-     */
-    public function setMerchantId(string $value)
-    {
-        return $this->setParameter('merchantId', $value);
     }
 }
