@@ -9,6 +9,7 @@ namespace Omnipay\ZarinPal;
 use Omnipay\Common\AbstractGateway;
 use Omnipay\Common\Message\AbstractRequest;
 use Omnipay\Common\Message\RequestInterface;
+use Omnipay\ZarinPal\Message\PurchaseCompleteRequest;
 use Omnipay\ZarinPal\Message\PurchaseRequest;
 
 /**
@@ -62,5 +63,14 @@ class Gateway extends AbstractGateway
     public function purchase(array $parameters = [])
     {
         return $this->createRequest(PurchaseRequest::class, $parameters);
+    }
+
+    /**
+     * @param array $parameters
+     * @return AbstractRequest|RequestInterface
+     */
+    public function completePurchase(array $parameters)
+    {
+        return $this->createRequest(PurchaseCompleteRequest::class, $parameters);
     }
 }
