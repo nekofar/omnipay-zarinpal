@@ -13,7 +13,6 @@ use Omnipay\Common\Message\AbstractResponse;
  */
 class PurchaseCompleteResponse extends AbstractResponse
 {
-
     /**
      * Is the response successful?
      *
@@ -21,6 +20,26 @@ class PurchaseCompleteResponse extends AbstractResponse
      */
     public function isSuccessful()
     {
-        // TODO: Implement isSuccessful() method.
+        return $this->data['Status'] === 100;
+    }
+
+    /**
+     * Response code
+     *
+     * @return null|string A response code from the payment gateway
+     */
+    public function getCode()
+    {
+        return $this->data['Status'];
+    }
+
+    /**
+     * Gateway Reference
+     *
+     * @return null|string A reference provided by the gateway to represent this transaction
+     */
+    public function getTransactionReference()
+    {
+        return $this->data['RefID'];
     }
 }
