@@ -35,7 +35,8 @@ class Gateway extends AbstractGateway
     {
         return [
             'testMode' => false,
-            'merchantId',
+            'merchantId' => '',
+            'returnUrl' => '',
         ];
     }
 
@@ -45,6 +46,14 @@ class Gateway extends AbstractGateway
     public function getMerchantId()
     {
         return $this->getParameter('merchantId');
+    }
+
+    /**
+     * @return string
+     */
+    public function getReturnUrl()
+    {
+        return $this->getParameter('returnUrl');
     }
 
     /**
