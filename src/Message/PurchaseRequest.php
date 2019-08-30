@@ -29,8 +29,8 @@ class PurchaseRequest extends AbstractRequest
             'MerchantID' => $this->getMerchantId(),
             'Amount' => $this->getAmount(),
             'Description' => $this->getDescription(),
-            'Email' => '',
-            'Mobile' => '',
+            'Email' => $this->getEmail(),
+            'Mobile' => $this->getMobile(),
             'CallbackURL' => $this->getReturnUrl(),
         ];
     }

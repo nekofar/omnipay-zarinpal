@@ -78,6 +78,40 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     }
 
     /**
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->getParameter('email');
+    }
+
+    /**
+     * @return string
+     */
+    public function getMobile()
+    {
+        return $this->getParameter('mobile');
+    }
+
+    /**
+     * @param string $value
+     * @return AbstractRequest
+     */
+    public function setEmail(string $value)
+    {
+        return $this->setParameter('email', $value);
+    }
+
+    /**
+     * @param string $value
+     * @return AbstractRequest
+     */
+    public function setAtMobile(string $value)
+    {
+        return $this->setParameter('mobile', $value);
+    }
+
+    /**
      * Send the request with specified data
      *
      * @param mixed $data The data to send.
@@ -108,18 +142,18 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     }
 
     /**
+     * @param string $endpoint
+     * @return string
+     */
+    abstract protected function createUri(string $endpoint);
+
+    /**
      * @return string
      */
     protected function getEndpoint()
     {
         return $this->getTestMode() ? $this->testEndpoint : $this->liveEndpoint;
     }
-
-    /**
-     * @param string $endpoint
-     * @return string
-     */
-    abstract protected function createUri(string $endpoint);
 
     /**
      * @param array $data
