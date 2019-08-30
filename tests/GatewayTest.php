@@ -3,14 +3,19 @@
 namespace Omnipay\ZarinPal;
 
 use Omnipay\Tests\GatewayTestCase;
-use Omnipay\ZarinPal\Message\PurchaseCompleteResponse;
-use Omnipay\ZarinPal\Message\PurchaseResponse;
+use Omnipay\ZarinPal\Message\AbstractResponse;
 
 class GatewayTest extends GatewayTestCase
 {
+    /**
+     * @var Gateway
+     */
     protected $gateway;
 
-    private $options;
+    /**
+     * @var array
+     */
+    protected $options;
 
     protected function setUp()
     {
@@ -18,40 +23,86 @@ class GatewayTest extends GatewayTestCase
 
         $this->gateway = new Gateway($this->getHttpClient(), $this->getHttpRequest());
 
-        $this->gateway->setMerchantId('123');
+        $this->gateway->setMerchantId('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx');
         $this->gateway->setReturnUrl('https://www.example.com/return');
 
         $this->options = [
             'amount' => 100,
-            'description' => 'Marina Run 2016',
+            'description' => 'Example',
+            'mobile' => '09123456789',
+            'email' => 'info@example.com',
         ];
     }
 
-    public function testPurchase()
+    /**
+     *
+     */
+    public function testPurchaseSuccess()
     {
-        $this->gateway->setTestMode(false);
-        /** @var PurchaseResponse $response */
+        $this->setMockHttpResponse('PurchaseSuccess.txt');
+
+        /** @var AbstractResponse $response */
         $response = $this->gateway->purchase($this->options)->send();
+
         $this->assertFalse($response->isSuccessful());
         $this->assertTrue($response->isRedirect());
-        $this->assertEquals('https://www.zarinpal.com/pg/StartPay/', $response->getRedirectUrl());
-
-        $this->gateway->setTestMode(true);
-        /** @var PurchaseResponse $response */
-        $response = $this->gateway->purchase($this->options)->send();
-        $this->assertEquals('https://sandbox.zarinpal.com/pg/StartPay/', $response->getRedirectUrl());
+        $this->assertEquals('https://www.zarinpal.com/pg/StartPay/000000000000000000000000000000034225', $response->getRedirectUrl());
     }
 
-    public function testCompletePurchase()
+    /**
+     *
+     */
+    public function testPurchaseFailure()
     {
+        $this->setMockHttpResponse('PurchaseFailure.txt');
+
+        /** @var AbstractResponse $response */
+        $response = $this->gateway->purchase($this->options)->send();
+
+        $this->assertFalse($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertSame('Amount should be above 100 Toman.', $response->getMessage());
+    }
+
+    /**
+     *
+     */
+    public function testCompletePurchaseSuccess()
+    {
+        $this->setMockHttpResponse('PurchaseCompleteSuccess.txt');
+
         $this->getHttpRequest()->request->replace([
             'amount' => '100',
-            'authority' => '123',
+            'authority' => '000000000000000000000000000000034225',
         ]);
 
-        /** @var PurchaseCompleteResponse $response */
-        $response = $this->gateway->completePurchase($this->options)->send();
+        $response = $this->gateway->completePurchase([
+            'amount' => '100',
+            'authority' => '000000000000000000000000000000034225',
+        ])->send();
+
         $this->assertTrue($response->isSuccessful());
-        $this->assertSame('12345', $response->getTransactionReference());
+        $this->assertSame('0000001', $response->getTransactionReference());
+    }
+
+    /**
+     *
+     */
+    public function testCompletePurchaseFailure()
+    {
+        $this->setMockHttpResponse('PurchaseCompleteFailure.txt');
+
+        $this->getHttpRequest()->request->replace([
+            'amount' => '100',
+            'authority' => '000000000000000000000000000000034225',
+        ]);
+
+        $response = $this->gateway->completePurchase([
+            'amount' => '100',
+            'authority' => '000000000000000000000000000000034225',
+        ])->send();
+
+        $this->assertFalse($response->isSuccessful());
+        $this->assertSame('Merchant ID or Acceptor IP is not correct.', $response->getMessage());
     }
 }

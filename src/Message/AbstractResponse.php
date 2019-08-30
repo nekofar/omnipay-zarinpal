@@ -40,7 +40,7 @@ abstract class AbstractResponse extends \Omnipay\Common\Message\AbstractResponse
      */
     public function getMessage()
     {
-        return $this->errorCodes[$this->getCode()];
+        return isset($this->errorCodes[$this->getCode()]) ? $this->errorCodes[$this->getCode()] : parent::getMessage();
     }
 
     /**

@@ -106,7 +106,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      * @param string $value
      * @return AbstractRequest
      */
-    public function setAtMobile(string $value)
+    public function setMobile(string $value)
     {
         return $this->setParameter('mobile', $value);
     }

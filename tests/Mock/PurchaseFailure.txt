@@ -1,0 +1,12 @@
+HTTP/2 200
+server: nginx
+date: Fri, 30 Aug 2019 17:10:04 GMT
+content-type: application/json
+vary: Accept-Encoding
+vary: Accept-Encoding
+x-powered-by: PHP/7.0.7
+cache-control: private, must-revalidate
+pragma: no-cache
+expires: -1
+
+{"Status":-3,"Authority":""}
