@@ -14,20 +14,6 @@ use Omnipay\Common\Exception\InvalidRequestException;
 class PurchaseCompleteRequest extends AbstractRequest
 {
     /**
-     * Sandbox Endpoint URL
-     *
-     * @var string URL
-     */
-    protected $testEndpoint = 'https://sandbox.zarinpal.com/pg/rest/WebGate/PaymentVerification.json';
-
-    /**
-     * Live Endpoint URL
-     *
-     * @var string URL
-     */
-    protected $liveEndpoint = 'https://www.zarinpal.com/pg/rest/WebGate/PaymentVerification.json';
-
-    /**
      * Get the raw data array for this message. The format of this varies from gateway to
      * gateway, but will usually be either an associative array, or a SimpleXMLElement.
      *
@@ -47,8 +33,17 @@ class PurchaseCompleteRequest extends AbstractRequest
     }
 
     /**
+     * @param string $endpoint
+     * @return string
+     */
+    protected function createUri(string $endpoint)
+    {
+        return $endpoint . '/PaymentVerification.json';
+    }
+
+    /**
      * @param array $data
-     * @return mixed
+     * @return PurchaseCompleteResponse
      */
     protected function createResponse(array $data)
     {

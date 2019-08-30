@@ -21,14 +21,14 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      *
      * @var string URL
      */
-    protected $testEndpoint;
+    protected $testEndpoint = 'https://sandbox.zarinpal.com/pg/rest/WebGate';
 
     /**
      * Live Endpoint URL
      *
      * @var string URL
      */
-    protected $liveEndpoint;
+    protected $liveEndpoint = 'https://www.zarinpal.com/pg/rest/WebGate';
 
     /**
      * @return string
@@ -89,7 +89,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         try {
             $httpResponse = $this->httpClient->request(
                 'POST',
-                $this->getEndpoint(),
+                $this->createUri($this->getEndpoint()),
                 [
                     'Accept' => 'application/json',
                     'Content-type' => 'application/json',
@@ -116,8 +116,14 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     }
 
     /**
+     * @param string $endpoint
+     * @return string
+     */
+    abstract protected function createUri(string $endpoint);
+
+    /**
      * @param array $data
-     * @return mixed
+     * @return AbstractResponse
      */
     abstract protected function createResponse(array $data);
 }

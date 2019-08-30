@@ -44,7 +44,7 @@ class PurchaseResponse extends AbstractResponse implements RedirectResponseInter
      */
     public function isRedirect()
     {
-        return true;
+        return isset($this->data['Authority']) && !empty($this->data['Authority']);
     }
 
     /**
