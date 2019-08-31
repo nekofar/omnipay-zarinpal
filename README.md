@@ -2,9 +2,12 @@
 
 **ZarinPal driver for the Omnipay PHP payment processing library**
 
-[![Build Status](https://travis-ci.org/nekofar/omnipay-zarinpal.png?branch=master)](https://travis-ci.org/nekofar/omnipay-zarinpal)
-[![Latest Stable Version](https://poser.pugx.org/omnipay/zarinpal/version.png)](https://packagist.org/packages/omnipay/zarinpal)
-[![Total Downloads](https://poser.pugx.org/omnipay/zarinpal/d/total.png)](https://packagist.org/packages/omnipay/zarinpal)
+[![Packagist Version](https://img.shields.io/packagist/v/nekofar/omnipay-zarinpal.svg)][1]
+[![PHP from Packagist](https://img.shields.io/packagist/php-v/nekofar/omnipay-zarinpal.svg)][1]
+[![Travis (.com) branch](https://img.shields.io/travis/com/nekofar/omnipay-zarinpal/master.svg)][3]
+[![Codecov](https://img.shields.io/codecov/c/gh/nekofar/omnipay-zarinpal.svg)][4]
+[![Packagist](https://img.shields.io/packagist/l/nekofar/virgool.svg)][2]
+[![Twitter: nekofar](https://img.shields.io/twitter/follow/nekofar.svg?style=flat)][7]
 
 [Omnipay](https://github.com/thephpleague/omnipay) is a framework agnostic, multi-gateway payment
 processing library for PHP. This package implements ZarinPal support for Omnipay.
@@ -95,3 +98,11 @@ you can subscribe to.
 
 If you believe you have found a bug, please report it using the [GitHub issue tracker](https://github.com/nekofar/omnipay-zarinpal/issues),
 or better yet, fork the library and submit a pull request.
+
+[1]: https://packagist.org/packages/nekofar/omnipay-zarinpal
+[2]: https://github.com/nekofar/omnipay-zarinpal/blob/master/LICENSE
+[3]: https://travis-ci.com/nekofar/omnipay-zarinpal
+[4]: https://codecov.io/gh/nekofar/omnipay-zarinpal
+[5]: https://packagist.org/providers/php-http/client-implementation
+[6]: https://virgool.io
+[7]: https://twitter.com/nekofar
