@@ -38,5 +38,9 @@
     "branch-alias": {
       "dev-master": "1.0.x-dev"
     }
+  },
+  "scripts": {
+    "test": "phpunit",
+    "lint": "phpcs"
   }
 }
