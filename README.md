@@ -6,7 +6,7 @@
 [![PHP from Packagist](https://img.shields.io/packagist/php-v/nekofar/omnipay-zarinpal.svg)][1]
 [![Travis (.com) branch](https://img.shields.io/travis/com/nekofar/omnipay-zarinpal/master.svg)][3]
 [![Codecov](https://img.shields.io/codecov/c/gh/nekofar/omnipay-zarinpal.svg)][4]
-[![Packagist](https://img.shields.io/packagist/l/nekofar/virgool.svg)][2]
+[![Packagist](https://img.shields.io/packagist/l/nekofar/omnipay-zarinpal.svg)][2]
 [![Twitter: nekofar](https://img.shields.io/twitter/follow/nekofar.svg?style=flat)][7]
 
 [Omnipay](https://github.com/thephpleague/omnipay) is a framework agnostic, multi-gateway payment
@@ -104,5 +104,5 @@ or better yet, fork the library and submit a pull request.
 [3]: https://travis-ci.com/nekofar/omnipay-zarinpal
 [4]: https://codecov.io/gh/nekofar/omnipay-zarinpal
 [5]: https://packagist.org/providers/php-http/client-implementation
-[6]: https://virgool.io
+[6]: https://zarinpal.com
 [7]: https://twitter.com/nekofar
