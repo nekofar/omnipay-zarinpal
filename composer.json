@@ -24,6 +24,11 @@
       "Omnipay\\ZarinPal\\": "src/"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "Omnipay\\Nobitex\\Tests\\": "tests/"
+    }
+  },
   "require": {
     "php": "^7.0",
     "ext-json": "*",

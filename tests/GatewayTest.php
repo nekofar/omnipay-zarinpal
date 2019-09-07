@@ -1,8 +1,9 @@
 <?php
 
-namespace Omnipay\ZarinPal;
+namespace Omnipay\ZarinPal\Tests;
 
 use Omnipay\Tests\GatewayTestCase;
+use Omnipay\ZarinPal\Gateway;
 use Omnipay\ZarinPal\Message\AbstractResponse;
 
 class GatewayTest extends GatewayTestCase
