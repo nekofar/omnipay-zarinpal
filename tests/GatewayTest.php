@@ -6,6 +6,10 @@ use Omnipay\Tests\GatewayTestCase;
 use Omnipay\ZarinPal\Gateway;
 use Omnipay\ZarinPal\Message\AbstractResponse;
 
+/**
+ * Class GatewayTest
+ * @package Omnipay\ZarinPal\Tests
+ */
 class GatewayTest extends GatewayTestCase
 {
     /**
@@ -18,6 +22,9 @@ class GatewayTest extends GatewayTestCase
      */
     protected $options;
 
+    /**
+     *
+     */
     protected function setUp()
     {
         parent::setUp();

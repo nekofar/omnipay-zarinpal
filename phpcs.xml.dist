@@ -39,6 +39,7 @@
         <exclude name="Squiz.Commenting.FileComment.IncorrectAuthor" />
         <exclude name="Squiz.Commenting.FileComment.SubpackageTagOrder"/>
         <exclude name="Squiz.Commenting.FileComment.MissingSubpackageTag"/>
+        <exclude name="Squiz.Commenting.FileComment.SpacingAfterOpen"/>
     </rule>
 
     <rule ref="Squiz.Commenting.ClassComment" />
