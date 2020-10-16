@@ -11,6 +11,7 @@
     "purchase"
   ],
   "homepage": "https://github.com/nekofar/omnipay-zarinpal",
+  "version": "1.0.4",
   "license": "MIT",
   "authors": [
     {
