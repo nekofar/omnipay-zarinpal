@@ -20,14 +20,13 @@
     }
   ],
   "require": {
-    "php": "^7.0",
+    "php": "^8.0",
     "ext-json": "*",
-    "omnipay/common": "^3.0"
+    "omnipay/common": "^3.1"
   },
   "require-dev": {
-    "omnipay/tests": "^3.1",
-    "phpunit/phpunit": "^6.0",
-    "squizlabs/php_codesniffer": "^3.4"
+    "omnipay/tests": "^4.1",
+    "squizlabs/php_codesniffer": "^3.6"
   },
   "extra": {
     "branch-alias": {

@@ -25,7 +25,7 @@ class GatewayTest extends GatewayTestCase
     /**
      *
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -45,7 +45,7 @@ class GatewayTest extends GatewayTestCase
     /**
      *
      */
-    public function testPurchaseSuccess()
+    public function testPurchaseSuccess(): void
     {
         $this->setMockHttpResponse('PurchaseSuccess.txt');
 
@@ -60,7 +60,7 @@ class GatewayTest extends GatewayTestCase
     /**
      *
      */
-    public function testPurchaseFailure()
+    public function testPurchaseFailure(): void
     {
         $this->setMockHttpResponse('PurchaseFailure.txt');
 
@@ -75,7 +75,7 @@ class GatewayTest extends GatewayTestCase
     /**
      *
      */
-    public function testCompletePurchaseSuccess()
+    public function testCompletePurchaseSuccess(): void
     {
         $this->setMockHttpResponse('PurchaseCompleteSuccess.txt');
 
@@ -96,7 +96,7 @@ class GatewayTest extends GatewayTestCase
     /**
      *
      */
-    public function testCompletePurchaseFailure()
+    public function testCompletePurchaseFailure(): void
     {
         $this->setMockHttpResponse('PurchaseCompleteFailure.txt');
 
