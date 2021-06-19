@@ -25,7 +25,7 @@
     "omnipay/common": "^3.1"
   },
   "require-dev": {
-    "omnipay/tests": "^3|^4",
+    "omnipay/tests": "^4.1",
     "squizlabs/php_codesniffer": "^3.4"
   },
   "extra": {
