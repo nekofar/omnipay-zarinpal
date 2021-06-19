@@ -79,3 +79,4 @@ fabric.properties
 
 /clover.xml
 /example/
+/.phpunit.result.cache
