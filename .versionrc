@@ -1,8 +1,7 @@
 {
   "header": "# Changelog",
   "skip": {
-    "commit": false,
-    "tag": false
+    "commit": false
   },
   "scripts": {
     "postchangelog": "sed -i '' 's/\\*\\*\\(.*\\)\\*\\*//g' CHANGELOG.md"
