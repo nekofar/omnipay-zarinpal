@@ -18,7 +18,7 @@ class GatewayTest extends GatewayTestCase
     protected $gateway;
 
     /**
-     * @var array
+     * @var array<string, integer|string>
      */
     protected $options;
 
