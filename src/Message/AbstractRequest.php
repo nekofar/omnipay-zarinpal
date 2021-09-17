@@ -10,7 +10,6 @@ declare(strict_types=1);
 
 namespace Omnipay\ZarinPal\Message;
 
-use Exception;
 use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Common\Exception\InvalidResponseException;
 use Omnipay\Common\Message\AbstractRequest as BaseAbstractRequest;
@@ -52,10 +51,12 @@ abstract class AbstractRequest extends BaseAbstractRequest
      */
     public function getAmount(): string
     {
-        if (!$value = parent::getAmount()) {
-            $value = $this->httpRequest->query->get('Amount');
+        $value = parent::getAmount();
+        if ($value) {
+            return $value;
         }
-        return $value;
+
+        return $this->httpRequest->query->get('Amount');
     }
 
     /**
@@ -69,10 +70,12 @@ abstract class AbstractRequest extends BaseAbstractRequest
      */
     public function getAuthority(): string
     {
-        if (!$value = $this->getParameter('authority')) {
-            $value = $this->httpRequest->query->get('Authority');
+        $value = $this->getParameter('authority');
+        if (!$value) {
+            return $value;
         }
-        return $value;
+
+        return $this->httpRequest->query->get('Authority');
     }
 
     /**
