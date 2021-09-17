@@ -20,7 +20,7 @@ class PurchaseCompleteResponse extends AbstractResponse
      */
     public function isSuccessful(): bool
     {
-        return $this->getCode() === 100;
+        return $this->getCode() === '100';
     }
 
     /**

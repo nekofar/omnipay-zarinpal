@@ -46,7 +46,7 @@ abstract class AbstractResponse extends BaseAbstractResponse
      */
     public function getMessage(): ?string
     {
-        return isset($this->errorCodes[$this->getCode()]) ? $this->errorCodes[$this->getCode()] : parent::getMessage();
+        return $this->errorCodes[$this->getCode()] ?? parent::getMessage();
     }
 
     /**
@@ -56,6 +56,6 @@ abstract class AbstractResponse extends BaseAbstractResponse
      */
     public function getCode(): ?string
     {
-        return isset($this->data['Status']) ? $this->data['Status'] : parent::getCode();
+        return (string) ($this->data['Status'] ?? parent::getCode());
     }
 }
