@@ -44,7 +44,7 @@ abstract class AbstractResponse extends BaseAbstractResponse
      *
      * @return null|string A response message from the payment gateway
      */
-    public function getMessage()
+    public function getMessage(): ?string
     {
         return isset($this->errorCodes[$this->getCode()]) ? $this->errorCodes[$this->getCode()] : parent::getMessage();
     }
@@ -54,7 +54,7 @@ abstract class AbstractResponse extends BaseAbstractResponse
      *
      * @return null|string A response code from the payment gateway
      */
-    public function getCode()
+    public function getCode(): ?string
     {
         return isset($this->data['Status']) ? $this->data['Status'] : parent::getCode();
     }

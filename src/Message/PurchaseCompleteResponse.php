@@ -17,10 +17,8 @@ class PurchaseCompleteResponse extends AbstractResponse
 {
     /**
      * Is the response successful?
-     *
-     * @return boolean
      */
-    public function isSuccessful()
+    public function isSuccessful(): bool
     {
         return $this->getCode() === 100;
     }
@@ -30,7 +28,7 @@ class PurchaseCompleteResponse extends AbstractResponse
      *
      * @return null|string A reference provided by the gateway to represent this transaction
      */
-    public function getTransactionReference()
+    public function getTransactionReference(): ?string
     {
         return $this->data['RefID'];
     }

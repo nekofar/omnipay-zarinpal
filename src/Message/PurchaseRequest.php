@@ -41,19 +41,16 @@ class PurchaseRequest extends AbstractRequest
     }
 
     /**
-     * @return string
      */
-    protected function createUri(string $endpoint)
+    protected function createUri(string $endpoint): string
     {
         return $endpoint . '/PaymentRequest.json';
     }
 
     /**
      * @param array<integer|string, mixed> $data
-     *
-     * @return PurchaseResponse
      */
-    protected function createResponse(array $data)
+    protected function createResponse(array $data): PurchaseResponse
     {
         return new PurchaseResponse($this, $data);
     }

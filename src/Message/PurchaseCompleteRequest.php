@@ -38,19 +38,16 @@ class PurchaseCompleteRequest extends AbstractRequest
     }
 
     /**
-     * @return string
      */
-    protected function createUri(string $endpoint)
+    protected function createUri(string $endpoint): string
     {
         return $endpoint . '/PaymentVerification.json';
     }
 
     /**
      * @param array<integer|string, mixed> $data
-     *
-     * @return PurchaseCompleteResponse
      */
-    protected function createResponse(array $data)
+    protected function createResponse(array $data): PurchaseCompleteResponse
     {
         return new PurchaseCompleteResponse($this, $data);
     }

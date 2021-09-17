@@ -36,23 +36,20 @@ abstract class AbstractRequest extends BaseAbstractRequest
     protected $liveEndpoint = 'https://www.zarinpal.com/pg/rest/WebGate';
 
     /**
-     * @return string
      */
-    abstract protected function createUri(string $endpoint);
+    abstract protected function createUri(string $endpoint): string;
 
     /**
      * @param array<integer|string, mixed> $data
      *
-     * @return AbstractResponse
+     * @return PurchaseResponse|PurchaseCompleteResponse
      */
     abstract protected function createResponse(array $data);
 
     /**
-     * @return string
-     *
      * @throws InvalidRequestException
      */
-    public function getAmount()
+    public function getAmount(): string
     {
         if (!$value = parent::getAmount()) {
             $value = $this->httpRequest->query->get('Amount');
@@ -61,17 +58,15 @@ abstract class AbstractRequest extends BaseAbstractRequest
     }
 
     /**
-     * @return string
      */
-    public function getMerchantId()
+    public function getMerchantId(): string
     {
         return $this->getParameter('merchantId');
     }
 
     /**
-     * @return string
      */
-    public function getAuthority()
+    public function getAuthority(): string
     {
         if (!$value = $this->getParameter('authority')) {
             $value = $this->httpRequest->query->get('Authority');
@@ -80,49 +75,43 @@ abstract class AbstractRequest extends BaseAbstractRequest
     }
 
     /**
-     * @return AbstractRequest
      */
-    public function setMerchantId(string $value)
+    public function setMerchantId(string $value): AbstractRequest
     {
         return $this->setParameter('merchantId', $value);
     }
 
     /**
-     * @return AbstractRequest
      */
-    public function setAuthority(string $value)
+    public function setAuthority(string $value): AbstractRequest
     {
         return $this->setParameter('authority', $value);
     }
 
     /**
-     * @return string
      */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->getParameter('email');
     }
 
     /**
-     * @return string
      */
-    public function getMobile()
+    public function getMobile(): string
     {
         return $this->getParameter('mobile');
     }
 
     /**
-     * @return AbstractRequest
      */
-    public function setEmail(string $value)
+    public function setEmail(string $value): AbstractRequest
     {
         return $this->setParameter('email', $value);
     }
 
     /**
-     * @return AbstractRequest
      */
-    public function setMobile(string $value)
+    public function setMobile(string $value): AbstractRequest
     {
         return $this->setParameter('mobile', $value);
     }
@@ -132,11 +121,9 @@ abstract class AbstractRequest extends BaseAbstractRequest
      *
      * @param mixed $data The data to send.
      *
-     * @return ResponseInterface
-     *
      * @throws InvalidResponseException
      */
-    public function sendData($data)
+    public function sendData($data): ResponseInterface
     {
         try {
             $httpResponse = $this->httpClient->request(
@@ -160,9 +147,8 @@ abstract class AbstractRequest extends BaseAbstractRequest
     }
 
     /**
-     * @return string
      */
-    protected function getEndpoint()
+    protected function getEndpoint(): string
     {
         return $this->getTestMode() ? $this->testEndpoint : $this->liveEndpoint;
     }
