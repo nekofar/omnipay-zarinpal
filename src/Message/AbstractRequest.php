@@ -68,7 +68,7 @@ abstract class AbstractRequest extends BaseAbstractRequest
 
     /**
      */
-    public function getAuthority(): string
+    public function getAuthority(): ?string
     {
         $value = $this->getParameter('authority');
         if (!$value) {
