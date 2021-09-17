@@ -15,6 +15,7 @@ use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Common\Exception\InvalidResponseException;
 use Omnipay\Common\Message\AbstractRequest as BaseAbstractRequest;
 use Omnipay\Common\Message\ResponseInterface;
+use Throwable;
 
 /**
  * Class AbstractRequest
@@ -138,7 +139,7 @@ abstract class AbstractRequest extends BaseAbstractRequest
             $json = $httpResponse->getBody()->getContents();
             $data = !empty($json) ? json_decode($json, true) : [];
             return $this->response = $this->createResponse($data);
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
             throw new InvalidResponseException(
                 'Error communicating with payment gateway: ' . $e->getMessage(),
                 $e->getCode()
