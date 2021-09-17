@@ -19,13 +19,13 @@
     }
   ],
   "require": {
-    "php": "^8.0",
+    "php": "^7.3 || ^8.0",
     "ext-json": "*",
     "omnipay/common": "^3.1"
   },
   "require-dev": {
     "omnipay/tests": "^4.1",
-    "squizlabs/php_codesniffer": "^3.6"
+    "nekofar/dev-tools": "^1.0"
   },
   "extra": {
     "branch-alias": {
@@ -42,7 +42,8 @@
       "Omnipay\\ZarinPal\\Tests\\": "tests/"
     }
   },
-  "minimum-stability": "stable",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "scripts": {
     "lint": "phpcs",
     "test": "phpunit"

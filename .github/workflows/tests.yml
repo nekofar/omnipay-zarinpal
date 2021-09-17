@@ -1,0 +1,42 @@
+name: Tests
+
+on: ['push', 'pull_request']
+
+jobs:
+  ci:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        php: ['7.3', '7.4', '8.0']
+        dependency-version: [prefer-lowest, prefer-stable]
+
+    name: PHP ${{ matrix.php }} - ${{ matrix.os }} - ${{ matrix.dependency-version }}
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup PHP environment
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php }}
+        tools: composer:v2
+        coverage: pcov
+
+    - name: Setup problem matches
+      run: |
+        echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+        echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
+    - name: Install PHP dependencies
+      run: composer update --${{ matrix.dependency-version }} --no-interaction --no-progress --ansi
+
+    - name: Run unit tests by phpunit
+      run: ./vendor/bin/phpunit --testdox --coverage-clover coverage.xml
+
+    - name: Collect test coverage
+      uses: codecov/codecov-action@v2
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: ./coverage.xml
