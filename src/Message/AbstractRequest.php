@@ -15,6 +15,10 @@ use Omnipay\Common\Message\AbstractRequest as BaseAbstractRequest;
 use Omnipay\Common\Message\ResponseInterface;
 use Throwable;
 
+use function json_decode;
+
+use const JSON_THROW_ON_ERROR;
+
 /**
  * Class AbstractRequest
  */
@@ -50,7 +54,7 @@ abstract class AbstractRequest extends BaseAbstractRequest
     {
         $value = parent::getAmount();
 
-        if ($value) {
+        if (!in_array($value, [null, ''], true)) {
             return $value;
         }
 
@@ -70,11 +74,11 @@ abstract class AbstractRequest extends BaseAbstractRequest
     {
         $value = $this->getParameter('authority');
 
-        if (!$value) {
+        if (!in_array($value, [null, ''], true)) {
             return $value;
         }
 
-        return $this->httpRequest->query->get('Authority');
+        return (string) $this->httpRequest->query->get('Authority');
     }
 
     /**
@@ -139,9 +143,11 @@ abstract class AbstractRequest extends BaseAbstractRequest
                 json_encode($data),
             );
             $json = $httpResponse->getBody()->getContents();
-            $data = !empty($json)
-                ? json_decode($json, true)
-                : [];
+            $data = [];
+
+            if (!in_array($json, [null, ''], true)) {
+                $data = json_decode($json, true, 512, JSON_THROW_ON_ERROR);
+            }
 
             return $this->response = $this->createResponse($data);
         } catch (Throwable $e) {

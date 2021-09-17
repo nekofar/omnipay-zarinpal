@@ -18,6 +18,13 @@ use Omnipay\Common\Message\RedirectResponseInterface;
 class PurchaseResponse extends AbstractResponse implements RedirectResponseInterface
 {
     /**
+     * The embodied request object.
+     *
+     * @var \Omnipay\ZarinPal\Message\PurchaseRequest
+     */
+    protected $request;
+
+    /**
      * Sandbox Endpoint URL
      *
      * @var string URL
@@ -44,7 +51,7 @@ class PurchaseResponse extends AbstractResponse implements RedirectResponseInter
      */
     public function isRedirect(): bool
     {
-        return isset($this->data['Authority']) && !empty($this->data['Authority']);
+        return isset($this->data['Authority']) && !in_array($this->data['Authority'], [null, ''], true);
     }
 
     /**
