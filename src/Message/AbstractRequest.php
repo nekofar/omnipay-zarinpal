@@ -13,12 +13,13 @@ namespace Omnipay\ZarinPal\Message;
 use Exception;
 use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Common\Exception\InvalidResponseException;
+use Omnipay\Common\Message\AbstractRequest as BaseAbstractRequest;
 use Omnipay\Common\Message\ResponseInterface;
 
 /**
  * Class AbstractRequest
  */
-abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
+abstract class AbstractRequest extends BaseAbstractRequest
 {
     /**
      * Sandbox Endpoint URL

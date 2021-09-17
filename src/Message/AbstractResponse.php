@@ -10,10 +10,12 @@ declare(strict_types=1);
 
 namespace Omnipay\ZarinPal\Message;
 
+use Omnipay\Common\Message\AbstractResponse as BaseAbstractResponse;
+
 /**
  * Class AbstractResponse
  */
-abstract class AbstractResponse extends \Omnipay\Common\Message\AbstractResponse
+abstract class AbstractResponse extends BaseAbstractResponse
 {
     /**
      * @var array
