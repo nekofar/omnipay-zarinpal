@@ -1,4 +1,11 @@
 # Changelog
+## [1.3.0](https://github.com/nekofar/omnipay-zarinpal/compare/v1.2.0...v1.3.0) (2021-09-17)
+
+
+### Bug Fixes
+
+* solve `getCode` returning int instead of string ([2d5e448](https://github.com/nekofar/omnipay-zarinpal/commit/2d5e4484eceed4c9b9944dd8a2390c3d02df878f))
+
 ### [1.1.1](https://github.com/nekofar/omnipay-zarinpal/compare/v1.1.0...v1.1.1) (2021-06-19)
 
 
