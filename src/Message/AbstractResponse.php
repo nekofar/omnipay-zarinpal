@@ -2,18 +2,23 @@
 
 /**
  * @package Omnipay\ZarinPal
+ *
  * @author Milad Nekofar <milad@nekofar.com>
  */
 
+declare(strict_types=1);
+
 namespace Omnipay\ZarinPal\Message;
+
+use Omnipay\Common\Message\AbstractResponse as BaseAbstractResponse;
 
 /**
  * Class AbstractResponse
  */
-abstract class AbstractResponse extends \Omnipay\Common\Message\AbstractResponse
+abstract class AbstractResponse extends BaseAbstractResponse
 {
     /**
-     * @var array
+     * @var array<int|string, string>
      */
     private $errorCodes = [
         '-1' => 'Information submitted is incomplete..',
@@ -37,20 +42,20 @@ abstract class AbstractResponse extends \Omnipay\Common\Message\AbstractResponse
     /**
      * Response Message
      *
-     * @return null|string A response message from the payment gateway
+     * @return string|null A response message from the payment gateway
      */
-    public function getMessage()
+    public function getMessage(): ?string
     {
-        return isset($this->errorCodes[$this->getCode()]) ? $this->errorCodes[$this->getCode()] : parent::getMessage();
+        return $this->errorCodes[$this->getCode()] ?? parent::getMessage();
     }
 
     /**
      * Response code
      *
-     * @return null|string A response code from the payment gateway
+     * @return string|null A response code from the payment gateway
      */
-    public function getCode()
+    public function getCode(): ?string
     {
-        return isset($this->data['Status']) ? $this->data['Status'] : parent::getCode();
+        return (string) ($this->data['Status'] ?? parent::getCode());
     }
 }

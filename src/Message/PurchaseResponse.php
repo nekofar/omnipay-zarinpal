@@ -2,8 +2,11 @@
 
 /**
  * @package Omnipay\ZarinPal
+ *
  * @author Milad Nekofar <milad@nekofar.com>
  */
+
+declare(strict_types=1);
 
 namespace Omnipay\ZarinPal\Message;
 
@@ -14,6 +17,13 @@ use Omnipay\Common\Message\RedirectResponseInterface;
  */
 class PurchaseResponse extends AbstractResponse implements RedirectResponseInterface
 {
+    /**
+     * The embodied request object.
+     *
+     * @var \Omnipay\ZarinPal\Message\PurchaseRequest
+     */
+    protected $request;
+
     /**
      * Sandbox Endpoint URL
      *
@@ -30,39 +40,34 @@ class PurchaseResponse extends AbstractResponse implements RedirectResponseInter
 
     /**
      * Is the response successful?
-     *
-     * @return boolean
      */
-    public function isSuccessful()
+    public function isSuccessful(): bool
     {
         return false;
     }
 
     /**
      * Does the response require a redirect?
-     *
-     * @return boolean
      */
-    public function isRedirect()
+    public function isRedirect(): bool
     {
-        return isset($this->data['Authority']) && !empty($this->data['Authority']);
+        return isset($this->data['Authority']) && !in_array($this->data['Authority'], [null, ''], true);
     }
 
     /**
      * Gets the redirect target url.
-     *
-     * @return string
      */
-    public function getRedirectUrl()
+    public function getRedirectUrl(): string
     {
         return $this->getEndpoint() . $this->data['Authority'];
     }
 
     /**
-     * @return string
      */
-    protected function getEndpoint()
+    protected function getEndpoint(): string
     {
-        return $this->request->getTestMode() ? $this->testEndpoint : $this->liveEndpoint;
+        return $this->request->getTestMode()
+            ? $this->testEndpoint
+            : $this->liveEndpoint;
     }
 }

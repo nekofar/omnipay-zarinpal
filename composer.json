@@ -25,7 +25,9 @@
   },
   "require-dev": {
     "omnipay/tests": "^4.1",
-    "nekofar/dev-tools": "^1.0"
+    "nekofar/dev-tools": "^1.0",
+    "phpstan/phpstan-strict-rules": "^0.12.11",
+    "phpstan/phpstan-phpunit": "^0.12.22"
   },
   "extra": {
     "branch-alias": {

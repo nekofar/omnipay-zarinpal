@@ -18,7 +18,7 @@ class GatewayTest extends GatewayTestCase
     protected $gateway;
 
     /**
-     * @var array
+     * @var array<string, integer|string>
      */
     protected $options;
 
@@ -52,9 +52,9 @@ class GatewayTest extends GatewayTestCase
         /** @var AbstractResponse $response */
         $response = $this->gateway->purchase($this->options)->send();
 
-        $this->assertFalse($response->isSuccessful());
-        $this->assertTrue($response->isRedirect());
-        $this->assertEquals('https://www.zarinpal.com/pg/StartPay/000000000000000000000000000000034225', $response->getRedirectUrl());
+        self::assertFalse($response->isSuccessful());
+        self::assertTrue($response->isRedirect());
+        self::assertEquals('https://www.zarinpal.com/pg/StartPay/000000000000000000000000000000034225', $response->getRedirectUrl());
     }
 
     /**
@@ -67,9 +67,9 @@ class GatewayTest extends GatewayTestCase
         /** @var AbstractResponse $response */
         $response = $this->gateway->purchase($this->options)->send();
 
-        $this->assertFalse($response->isSuccessful());
-        $this->assertFalse($response->isRedirect());
-        $this->assertSame('Amount should be above 100 Toman.', $response->getMessage());
+        self::assertFalse($response->isSuccessful());
+        self::assertFalse($response->isRedirect());
+        self::assertSame('Amount should be above 100 Toman.', $response->getMessage());
     }
 
     /**
@@ -89,8 +89,8 @@ class GatewayTest extends GatewayTestCase
             'authority' => '000000000000000000000000000000034225',
         ])->send();
 
-        $this->assertTrue($response->isSuccessful());
-        $this->assertSame('0000001', $response->getTransactionReference());
+        self::assertTrue($response->isSuccessful());
+        self::assertSame('0000001', $response->getTransactionReference());
     }
 
     /**
@@ -110,7 +110,7 @@ class GatewayTest extends GatewayTestCase
             'authority' => '000000000000000000000000000000034225',
         ])->send();
 
-        $this->assertFalse($response->isSuccessful());
-        $this->assertSame('Merchant ID or Acceptor IP is not correct.', $response->getMessage());
+        self::assertFalse($response->isSuccessful());
+        self::assertSame('Merchant ID or Acceptor IP is not correct.', $response->getMessage());
     }
 }

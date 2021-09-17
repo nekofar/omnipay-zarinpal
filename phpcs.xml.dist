@@ -27,28 +27,5 @@
     <!-- Exclude the Node Modules directory. -->
     <exclude-pattern>/node_modules/*</exclude-pattern>
 
-    <rule ref="PSR12"/>
-
-    <rule ref="Squiz.Strings.ConcatenationSpacing">
-        <properties>
-            <property name="spacing" value="1"/>
-        </properties>
-    </rule>
-
-    <rule ref="Squiz.Commenting.FileComment">
-        <exclude name="Squiz.Commenting.FileComment.IncorrectAuthor" />
-        <exclude name="Squiz.Commenting.FileComment.SubpackageTagOrder"/>
-        <exclude name="Squiz.Commenting.FileComment.MissingSubpackageTag"/>
-        <exclude name="Squiz.Commenting.FileComment.SpacingAfterOpen"/>
-    </rule>
-
-    <rule ref="Squiz.Commenting.ClassComment" />
-    <rule ref="Squiz.Commenting.VariableComment" />
-
-    <rule ref="Squiz.Commenting.FunctionComment">
-        <exclude name="Squiz.Commenting.FunctionComment.MissingParamComment" />
-        <exclude name="Squiz.Commenting.FunctionComment.EmptyThrows" />
-    </rule>
-
-    <rule ref="Squiz.Commenting.FunctionCommentThrowTag" />
+    <rule ref="NekofarCodingStandard"/>
 </ruleset>

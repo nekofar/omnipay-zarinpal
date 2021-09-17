@@ -2,13 +2,15 @@
 
 /**
  * @package Omnipay\ZarinPal
+ *
  * @author Milad Nekofar <milad@nekofar.com>
  */
+
+declare(strict_types=1);
 
 namespace Omnipay\ZarinPal;
 
 use Omnipay\Common\AbstractGateway;
-use Omnipay\Common\Message\AbstractRequest;
 use Omnipay\Common\Message\RequestInterface;
 use Omnipay\ZarinPal\Message\PurchaseCompleteRequest;
 use Omnipay\ZarinPal\Message\PurchaseRequest;
@@ -22,17 +24,16 @@ class Gateway extends AbstractGateway
      * Get gateway display name
      *
      * This can be used by carts to get the display name for each gateway.
-     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return 'ZarinPal';
     }
 
     /**
-     * @return array
+     * @return array<string, integer|string|float|bool>
      */
-    public function getDefaultParameters()
+    public function getDefaultParameters(): array
     {
         return [
             'testMode' => false,
@@ -42,32 +43,27 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * @return string
      */
-    public function getMerchantId()
+    public function getMerchantId(): string
     {
         return $this->getParameter('merchantId');
     }
 
     /**
-     * @return string
      */
-    public function getReturnUrl()
+    public function getReturnUrl(): string
     {
         return $this->getParameter('returnUrl');
     }
 
     /**
-     * @param string $value
-     * @return Gateway
      */
-    public function setMerchantId(string $value)
+    public function setMerchantId(string $value): Gateway
     {
         return $this->setParameter('merchantId', $value);
     }
 
     /**
-     * @param string $value
      * @return $this
      */
     public function setReturnUrl(string $value)
@@ -76,19 +72,17 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * @param array $parameters
-     * @return AbstractRequest|RequestInterface
+     * @param array<string, integer|string|float> $parameters
      */
-    public function purchase(array $parameters = [])
+    public function purchase(array $parameters = []): RequestInterface
     {
         return $this->createRequest(PurchaseRequest::class, $parameters);
     }
 
     /**
-     * @param array $parameters
-     * @return AbstractRequest|RequestInterface
+     * @param array<string, integer|string|float> $parameters
      */
-    public function completePurchase(array $parameters = [])
+    public function completePurchase(array $parameters = []): RequestInterface
     {
         return $this->createRequest(PurchaseCompleteRequest::class, $parameters);
     }

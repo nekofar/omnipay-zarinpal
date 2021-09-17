@@ -2,20 +2,27 @@
 
 /**
  * @package Omnipay\ZarinPal
+ *
  * @author Milad Nekofar <milad@nekofar.com>
  */
 
+declare(strict_types=1);
+
 namespace Omnipay\ZarinPal\Message;
 
-use Exception;
-use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Common\Exception\InvalidResponseException;
+use Omnipay\Common\Message\AbstractRequest as BaseAbstractRequest;
 use Omnipay\Common\Message\ResponseInterface;
+use Throwable;
+
+use function json_decode;
+
+use const JSON_THROW_ON_ERROR;
 
 /**
  * Class AbstractRequest
  */
-abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
+abstract class AbstractRequest extends BaseAbstractRequest
 {
     /**
      * Sandbox Endpoint URL
@@ -32,82 +39,86 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     protected $liveEndpoint = 'https://www.zarinpal.com/pg/rest/WebGate';
 
     /**
-     * @return string
-     * @throws InvalidRequestException
      */
-    public function getAmount()
+    abstract protected function createUri(string $endpoint): string;
+
+    /**
+     * @param array<string, string|null> $data
+     */
+    abstract protected function createResponse(array $data): ResponseInterface;
+
+    /**
+     * @throws \Omnipay\Common\Exception\InvalidRequestException
+     */
+    public function getAmount(): string
     {
         $value = parent::getAmount();
-        $value = $value ?: $this->httpRequest->query->get('Amount');
-        return $value;
+
+        if (!in_array($value, [null, ''], true)) {
+            return $value;
+        }
+
+        return (string) $this->httpRequest->query->get('Amount');
     }
 
     /**
-     * @return string
      */
-    public function getMerchantId()
+    public function getMerchantId(): string
     {
         return $this->getParameter('merchantId');
     }
 
     /**
-     * @return string
      */
-    public function getAuthority()
+    public function getAuthority(): ?string
     {
-        $value = $this->getParameter('authority');
-        $value = $value ?: $this->httpRequest->query->get('Authority');
-        return $value;
+        $value = (string) $this->getParameter('authority');
+
+        if (!in_array($value, [null, ''], true)) {
+            return $value;
+        }
+
+        return (string) $this->httpRequest->query->get('Authority');
     }
 
     /**
-     * @param string $value
-     * @return AbstractRequest
      */
-    public function setMerchantId(string $value)
+    public function setMerchantId(string $value): AbstractRequest
     {
         return $this->setParameter('merchantId', $value);
     }
 
     /**
-     * @param string $value
-     * @return AbstractRequest
      */
-    public function setAuthority(string $value)
+    public function setAuthority(string $value): AbstractRequest
     {
         return $this->setParameter('authority', $value);
     }
 
     /**
-     * @return string
      */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->getParameter('email');
     }
 
     /**
-     * @return string
      */
-    public function getMobile()
+    public function getMobile(): string
     {
         return $this->getParameter('mobile');
     }
 
     /**
-     * @param string $value
-     * @return AbstractRequest
      */
-    public function setEmail(string $value)
+    public function setEmail(string $value): AbstractRequest
     {
         return $this->setParameter('email', $value);
     }
 
     /**
-     * @param string $value
-     * @return AbstractRequest
      */
-    public function setMobile(string $value)
+    public function setMobile(string $value): AbstractRequest
     {
         return $this->setParameter('mobile', $value);
     }
@@ -115,11 +126,15 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     /**
      * Send the request with specified data
      *
-     * @param mixed $data The data to send.
-     * @return ResponseInterface
-     * @throws InvalidResponseException
+     * @param array<string, string|null> $data The data to send.
+     *
+     * @throws \Omnipay\Common\Exception\InvalidResponseException
+     *
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+     *
+     * @phpstan-ignore-next-line
      */
-    public function sendData($data)
+    public function sendData($data): ResponseInterface
     {
         try {
             $httpResponse = $this->httpClient->request(
@@ -129,36 +144,30 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
                     'Accept' => 'application/json',
                     'Content-type' => 'application/json',
                 ],
-                json_encode($data)
+                json_encode($data, JSON_THROW_ON_ERROR),
             );
             $json = $httpResponse->getBody()->getContents();
-            $data = !empty($json) ? json_decode($json, true) : [];
+            $data = [];
+
+            if (!in_array($json, [null, ''], true)) {
+                $data = json_decode($json, true, 512, JSON_THROW_ON_ERROR);
+            }
+
             return $this->response = $this->createResponse($data);
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
             throw new InvalidResponseException(
                 'Error communicating with payment gateway: ' . $e->getMessage(),
-                $e->getCode()
+                $e->getCode(),
             );
         }
     }
 
     /**
-     * @param string $endpoint
-     * @return string
      */
-    abstract protected function createUri(string $endpoint);
-
-    /**
-     * @return string
-     */
-    protected function getEndpoint()
+    protected function getEndpoint(): string
     {
-        return $this->getTestMode() ? $this->testEndpoint : $this->liveEndpoint;
+        return $this->getTestMode()
+            ? $this->testEndpoint
+            : $this->liveEndpoint;
     }
-
-    /**
-     * @param array $data
-     * @return AbstractResponse
-     */
-    abstract protected function createResponse(array $data);
 }
