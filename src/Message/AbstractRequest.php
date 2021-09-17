@@ -140,7 +140,7 @@ abstract class AbstractRequest extends BaseAbstractRequest
                     'Accept' => 'application/json',
                     'Content-type' => 'application/json',
                 ],
-                json_encode($data),
+                json_encode($data, JSON_THROW_ON_ERROR),
             );
             $json = $httpResponse->getBody()->getContents();
             $data = [];
