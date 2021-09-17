@@ -39,11 +39,9 @@ abstract class AbstractRequest extends BaseAbstractRequest
     abstract protected function createUri(string $endpoint): string;
 
     /**
-     * @param array<integer|string, mixed> $data
-     *
-     * @return \Omnipay\ZarinPal\Message\{PurchaseResponse,PurchaseCompleteResponse}
+     * @param array<string, integer|string|float> $data
      */
-    abstract protected function createResponse(array $data);
+    abstract protected function createResponse(array $data): ResponseInterface;
 
     /**
      * @throws \Omnipay\Common\Exception\InvalidRequestException
@@ -124,7 +122,7 @@ abstract class AbstractRequest extends BaseAbstractRequest
     /**
      * Send the request with specified data
      *
-     * @param mixed $data The data to send.
+     * @param array<string, integer|string|float|bool> $data The data to send.
      *
      * @throws \Omnipay\Common\Exception\InvalidResponseException
      */

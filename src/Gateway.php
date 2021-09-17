@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace Omnipay\ZarinPal;
 
 use Omnipay\Common\AbstractGateway;
+use Omnipay\Common\Message\RequestInterface;
 use Omnipay\ZarinPal\Message\PurchaseCompleteRequest;
 use Omnipay\ZarinPal\Message\PurchaseRequest;
 
@@ -30,7 +31,7 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * @return array<string,mixed>
+     * @return array<string, integer|string|float|bool>
      */
     public function getDefaultParameters(): array
     {
@@ -71,21 +72,17 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * @param array<string, mixed> $parameters
-     *
-     * @return \Omnipay\Common\Message\AbstractRequest|\Omnipay\ZarinPal\RequestInterface
+     * @param array<string, integer|string|float> $parameters
      */
-    public function purchase(array $parameters = [])
+    public function purchase(array $parameters = []): RequestInterface
     {
         return $this->createRequest(PurchaseRequest::class, $parameters);
     }
 
     /**
-     * @param array<string, mixed> $parameters
-     *
-     * @return \Omnipay\Common\Message\AbstractRequest|\Omnipay\ZarinPal\RequestInterface
+     * @param array<string, integer|string|float> $parameters
      */
-    public function completePurchase(array $parameters = [])
+    public function completePurchase(array $parameters = []): RequestInterface
     {
         return $this->createRequest(PurchaseCompleteRequest::class, $parameters);
     }
