@@ -55,8 +55,9 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      */
     public function getAmount()
     {
-        $value = parent::getAmount();
-        $value = $value ?: $this->httpRequest->query->get('Amount');
+        if (!$value = parent::getAmount()) {
+            $value = $this->httpRequest->query->get('Amount');
+        }
         return $value;
     }
 
@@ -73,8 +74,9 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      */
     public function getAuthority()
     {
-        $value = $this->getParameter('authority');
-        $value = $value ?: $this->httpRequest->query->get('Authority');
+        if (!$value = $this->getParameter('authority')) {
+            $value = $this->httpRequest->query->get('Authority');
+        }
         return $value;
     }
 
