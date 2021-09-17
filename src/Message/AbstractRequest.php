@@ -156,7 +156,10 @@ abstract class AbstractRequest extends BaseAbstractRequest
             return $this->response = $this->createResponse($data);
         } catch (Throwable $e) {
             throw new InvalidResponseException(
-                'Error communicating with payment gateway: ' . $e->getMessage(),
+                sprintf(
+                    'Error communicating with payment gateway: %s',
+                    $e->getMessage(),
+                ),
                 $e->getCode(),
             );
         }

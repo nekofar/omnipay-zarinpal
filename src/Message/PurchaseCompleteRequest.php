@@ -18,8 +18,9 @@ use Omnipay\Common\Message\ResponseInterface;
 class PurchaseCompleteRequest extends AbstractRequest
 {
     /**
-     * Get the raw data array for this message. The format of this varies from gateway to
-     * gateway, but will usually be either an associative array, or a SimpleXMLElement.
+     * Get the raw data array for this message. The format of this varies from
+     * gateway to gateway, but will usually be either an associative array, or
+     * a SimpleXMLElement.
      *
      * @return array<string, string|null>
      *
@@ -38,6 +39,7 @@ class PurchaseCompleteRequest extends AbstractRequest
     }
 
     /**
+     * Create an uri based on given endpoint.
      */
     protected function createUri(string $endpoint): string
     {
