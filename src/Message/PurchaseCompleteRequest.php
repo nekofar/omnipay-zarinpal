@@ -38,8 +38,6 @@ class PurchaseCompleteRequest extends AbstractRequest
     }
 
     /**
-     * @param string $endpoint
-     *
      * @return string
      */
     protected function createUri(string $endpoint)
@@ -48,7 +46,7 @@ class PurchaseCompleteRequest extends AbstractRequest
     }
 
     /**
-     * @param array $data
+     * @param array<integer|string, mixed> $data
      *
      * @return PurchaseCompleteResponse
      */

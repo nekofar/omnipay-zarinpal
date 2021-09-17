@@ -36,14 +36,12 @@ abstract class AbstractRequest extends BaseAbstractRequest
     protected $liveEndpoint = 'https://www.zarinpal.com/pg/rest/WebGate';
 
     /**
-     * @param string $endpoint
-     *
      * @return string
      */
     abstract protected function createUri(string $endpoint);
 
     /**
-     * @param array $data
+     * @param array<integer|string, mixed> $data
      *
      * @return AbstractResponse
      */
@@ -82,8 +80,6 @@ abstract class AbstractRequest extends BaseAbstractRequest
     }
 
     /**
-     * @param string $value
-     *
      * @return AbstractRequest
      */
     public function setMerchantId(string $value)
@@ -92,8 +88,6 @@ abstract class AbstractRequest extends BaseAbstractRequest
     }
 
     /**
-     * @param string $value
-     *
      * @return AbstractRequest
      */
     public function setAuthority(string $value)
@@ -118,8 +112,6 @@ abstract class AbstractRequest extends BaseAbstractRequest
     }
 
     /**
-     * @param string $value
-     *
      * @return AbstractRequest
      */
     public function setEmail(string $value)
@@ -128,8 +120,6 @@ abstract class AbstractRequest extends BaseAbstractRequest
     }
 
     /**
-     * @param string $value
-     *
      * @return AbstractRequest
      */
     public function setMobile(string $value)

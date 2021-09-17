@@ -18,7 +18,7 @@ use Omnipay\Common\Message\AbstractResponse as BaseAbstractResponse;
 abstract class AbstractResponse extends BaseAbstractResponse
 {
     /**
-     * @var array
+     * @var array<string, string>
      */
     private $errorCodes = [
         '-1' => 'Information submitted is incomplete..',

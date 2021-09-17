@@ -62,8 +62,6 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * @param string $value
-     *
      * @return Gateway
      */
     public function setMerchantId(string $value)
@@ -72,8 +70,6 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * @param string $value
-     *
      * @return $this
      */
     public function setReturnUrl(string $value)
@@ -82,7 +78,7 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * @param array $parameters
+     * @param array<string, mixed> $parameters
      *
      * @return AbstractRequest|RequestInterface
      */
@@ -92,7 +88,7 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * @param array $parameters
+     * @param array<string, mixed> $parameters
      *
      * @return AbstractRequest|RequestInterface
      */
