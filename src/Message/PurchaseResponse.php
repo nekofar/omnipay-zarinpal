@@ -5,6 +5,8 @@
  * @author Milad Nekofar <milad@nekofar.com>
  */
 
+declare(strict_types=1);
+
 namespace Omnipay\ZarinPal\Message;
 
 use Omnipay\Common\Message\RedirectResponseInterface;
