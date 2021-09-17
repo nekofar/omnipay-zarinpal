@@ -58,7 +58,7 @@ abstract class AbstractRequest extends BaseAbstractRequest
             return $value;
         }
 
-        return $this->httpRequest->query->get('Amount');
+        return (string) $this->httpRequest->query->get('Amount');
     }
 
     /**
@@ -72,7 +72,7 @@ abstract class AbstractRequest extends BaseAbstractRequest
      */
     public function getAuthority(): ?string
     {
-        $value = $this->getParameter('authority');
+        $value = (string) $this->getParameter('authority');
 
         if (!in_array($value, [null, ''], true)) {
             return $value;
