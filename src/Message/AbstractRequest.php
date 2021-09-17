@@ -35,7 +35,22 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     protected $liveEndpoint = 'https://www.zarinpal.com/pg/rest/WebGate';
 
     /**
+     * @param string $endpoint
+     *
      * @return string
+     */
+    abstract protected function createUri(string $endpoint);
+
+    /**
+     * @param array $data
+     *
+     * @return AbstractResponse
+     */
+    abstract protected function createResponse(array $data);
+
+    /**
+     * @return string
+     *
      * @throws InvalidRequestException
      */
     public function getAmount()
@@ -152,22 +167,10 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     }
 
     /**
-     * @param string $endpoint
-     * @return string
-     */
-    abstract protected function createUri(string $endpoint);
-
-    /**
      * @return string
      */
     protected function getEndpoint()
     {
         return $this->getTestMode() ? $this->testEndpoint : $this->liveEndpoint;
     }
-
-    /**
-     * @param array $data
-     * @return AbstractResponse
-     */
-    abstract protected function createResponse(array $data);
 }
