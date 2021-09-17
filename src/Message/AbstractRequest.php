@@ -43,7 +43,7 @@ abstract class AbstractRequest extends BaseAbstractRequest
     abstract protected function createUri(string $endpoint): string;
 
     /**
-     * @param array<string, integer|string|float> $data
+     * @param array<string, string|null> $data
      */
     abstract protected function createResponse(array $data): ResponseInterface;
 
@@ -126,9 +126,13 @@ abstract class AbstractRequest extends BaseAbstractRequest
     /**
      * Send the request with specified data
      *
-     * @param array<string, integer|string|float|bool> $data The data to send.
+     * @param array<string, string|null> $data The data to send.
      *
      * @throws \Omnipay\Common\Exception\InvalidResponseException
+     *
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+     *
+     * @phpstan-ignore-next-line
      */
     public function sendData($data): ResponseInterface
     {

@@ -48,7 +48,7 @@ class PurchaseRequest extends AbstractRequest
     }
 
     /**
-     * @param array<string, integer|string|float> $data
+     * @param array<string, string|null> $data
      */
     protected function createResponse(array $data): ResponseInterface
     {

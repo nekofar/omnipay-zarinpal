@@ -21,7 +21,7 @@ class PurchaseCompleteRequest extends AbstractRequest
      * Get the raw data array for this message. The format of this varies from gateway to
      * gateway, but will usually be either an associative array, or a SimpleXMLElement.
      *
-     * @return array<string, integer|string|float>
+     * @return array<string, string|null>
      *
      * @throws \Omnipay\Common\Exception\InvalidRequestException
      */
@@ -45,7 +45,7 @@ class PurchaseCompleteRequest extends AbstractRequest
     }
 
     /**
-     * @param array<string, integer|string|float> $data
+     * @param array<string, string|null> $data
      */
     protected function createResponse(array $data): ResponseInterface
     {
