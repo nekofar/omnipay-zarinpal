@@ -30,13 +30,13 @@ abstract class AbstractResponse extends BaseAbstractResponse
         '-21' => 'Financial operations for this transaction was not found.',
         '-22' => 'Transaction is unsuccessful.',
         '-33' => 'Transaction amount does not match the amount paid.',
-        '-34' => 'Limit the number of transactions or number has crossed the divide.',
+        '-34' => 'Limit the number of transactions or number has crossed the divide.', // phpcs:ignoree
         '-40' => 'There is no access to the method.',
         '-41' => 'Additional Data related to information submitted is invalid.',
-        '-42' => 'The validity period of the payment id lifetime must be between 30 minutes to 45 days.',
+        '-42' => 'The validity period of the payment id lifetime must be between 30 minutes to 45 days.', // phpcs:ignore
         '-54' => 'Request archived.',
         '100' => 'Operation was successful.',
-        '101' => 'Operation was successful but verification operation on this transaction have already been done.',
+        '101' => 'Operation was successful but verification operation on this transaction have already been done.', // phpcs:ignore
     ];
 
     /**

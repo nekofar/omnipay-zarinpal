@@ -10,12 +10,12 @@ declare(strict_types=1);
 
 namespace Omnipay\ZarinPal\Message;
 
-use Omnipay\Common\Message\RedirectResponseInterface;
+use Omnipay\Common\Message\RedirectResponseInterface as RedirectResponse;
 
 /**
  * Class PurchaseResponse
  */
-class PurchaseResponse extends AbstractResponse implements RedirectResponseInterface
+class PurchaseResponse extends AbstractResponse implements RedirectResponse
 {
     /**
      * The embodied request object.
@@ -51,7 +51,8 @@ class PurchaseResponse extends AbstractResponse implements RedirectResponseInter
      */
     public function isRedirect(): bool
     {
-        return isset($this->data['Authority']) && !in_array($this->data['Authority'], [null, ''], true);
+        return isset($this->data['Authority'])
+            && !in_array($this->data['Authority'], [null, ''], true);
     }
 
     /**

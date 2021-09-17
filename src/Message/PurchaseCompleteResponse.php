@@ -24,9 +24,7 @@ class PurchaseCompleteResponse extends AbstractResponse
     }
 
     /**
-     * Gateway Reference
-     *
-     * @return string|null A reference provided by the gateway to represent this transaction
+     * A reference provided by the gateway to represent this transaction.
      */
     public function getTransactionReference(): ?string
     {

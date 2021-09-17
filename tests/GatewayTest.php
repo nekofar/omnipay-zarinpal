@@ -20,7 +20,7 @@ class GatewayTest extends GatewayTestCase
     /**
      * @var array<string, integer|string>
      */
-    protected $options;
+    protected $params;
 
     /**
      *
@@ -34,7 +34,7 @@ class GatewayTest extends GatewayTestCase
         $this->gateway->setMerchantId('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx');
         $this->gateway->setReturnUrl('https://www.example.com/return');
 
-        $this->options = [
+        $this->params = [
             'amount' => 100,
             'description' => 'Example',
             'mobile' => '09123456789',
@@ -50,7 +50,7 @@ class GatewayTest extends GatewayTestCase
         $this->setMockHttpResponse('PurchaseSuccess.txt');
 
         /** @var AbstractResponse $response */
-        $response = $this->gateway->purchase($this->options)->send();
+        $response = $this->gateway->purchase($this->params)->send();
 
         self::assertFalse($response->isSuccessful());
         self::assertTrue($response->isRedirect());
@@ -65,7 +65,7 @@ class GatewayTest extends GatewayTestCase
         $this->setMockHttpResponse('PurchaseFailure.txt');
 
         /** @var AbstractResponse $response */
-        $response = $this->gateway->purchase($this->options)->send();
+        $response = $this->gateway->purchase($this->params)->send();
 
         self::assertFalse($response->isSuccessful());
         self::assertFalse($response->isRedirect());

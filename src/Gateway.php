@@ -72,18 +72,18 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * @param array<string, integer|string|float> $parameters
+     * @param array<string, integer|string|float> $params
      */
-    public function purchase(array $parameters = []): RequestInterface
+    public function purchase(array $params = []): RequestInterface
     {
-        return $this->createRequest(PurchaseRequest::class, $parameters);
+        return $this->createRequest(PurchaseRequest::class, $params);
     }
 
     /**
-     * @param array<string, integer|string|float> $parameters
+     * @param array<string, integer|string|float> $params
      */
-    public function completePurchase(array $parameters = []): RequestInterface
+    public function completePurchase(array $params = []): RequestInterface
     {
-        return $this->createRequest(PurchaseCompleteRequest::class, $parameters);
+        return $this->createRequest(PurchaseCompleteRequest::class, $params);
     }
 }
