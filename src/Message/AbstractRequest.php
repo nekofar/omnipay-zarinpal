@@ -2,6 +2,7 @@
 
 /**
  * @package Omnipay\ZarinPal
+ *
  * @author Milad Nekofar <milad@nekofar.com>
  */
 
@@ -64,6 +65,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 
     /**
      * @param string $value
+     *
      * @return AbstractRequest
      */
     public function setMerchantId(string $value)
@@ -73,6 +75,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 
     /**
      * @param string $value
+     *
      * @return AbstractRequest
      */
     public function setAuthority(string $value)
@@ -98,6 +101,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 
     /**
      * @param string $value
+     *
      * @return AbstractRequest
      */
     public function setEmail(string $value)
@@ -107,6 +111,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 
     /**
      * @param string $value
+     *
      * @return AbstractRequest
      */
     public function setMobile(string $value)
@@ -118,7 +123,9 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      * Send the request with specified data
      *
      * @param mixed $data The data to send.
+     *
      * @return ResponseInterface
+     *
      * @throws InvalidResponseException
      */
     public function sendData($data)

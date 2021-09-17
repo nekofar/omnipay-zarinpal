@@ -2,6 +2,7 @@
 
 /**
  * @package Omnipay\ZarinPal
+ *
  * @author Milad Nekofar <milad@nekofar.com>
  */
 
@@ -21,6 +22,7 @@ class PurchaseCompleteRequest extends AbstractRequest
      * gateway, but will usually be either an associative array, or a SimpleXMLElement.
      *
      * @return mixed
+     *
      * @throws InvalidRequestException
      */
     public function getData()
@@ -37,6 +39,7 @@ class PurchaseCompleteRequest extends AbstractRequest
 
     /**
      * @param string $endpoint
+     *
      * @return string
      */
     protected function createUri(string $endpoint)
@@ -46,6 +49,7 @@ class PurchaseCompleteRequest extends AbstractRequest
 
     /**
      * @param array $data
+     *
      * @return PurchaseCompleteResponse
      */
     protected function createResponse(array $data)

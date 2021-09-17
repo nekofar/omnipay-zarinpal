@@ -2,6 +2,7 @@
 
 /**
  * @package Omnipay\ZarinPal
+ *
  * @author Milad Nekofar <milad@nekofar.com>
  */
 
@@ -24,6 +25,7 @@ class Gateway extends AbstractGateway
      * Get gateway display name
      *
      * This can be used by carts to get the display name for each gateway.
+     *
      * @return string
      */
     public function getName()
@@ -61,6 +63,7 @@ class Gateway extends AbstractGateway
 
     /**
      * @param string $value
+     *
      * @return Gateway
      */
     public function setMerchantId(string $value)
@@ -70,6 +73,7 @@ class Gateway extends AbstractGateway
 
     /**
      * @param string $value
+     *
      * @return $this
      */
     public function setReturnUrl(string $value)
@@ -79,6 +83,7 @@ class Gateway extends AbstractGateway
 
     /**
      * @param array $parameters
+     *
      * @return AbstractRequest|RequestInterface
      */
     public function purchase(array $parameters = [])
@@ -88,6 +93,7 @@ class Gateway extends AbstractGateway
 
     /**
      * @param array $parameters
+     *
      * @return AbstractRequest|RequestInterface
      */
     public function completePurchase(array $parameters = [])
