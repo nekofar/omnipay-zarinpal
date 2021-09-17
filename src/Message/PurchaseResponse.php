@@ -59,6 +59,8 @@ class PurchaseResponse extends AbstractResponse implements RedirectResponseInter
      */
     protected function getEndpoint(): string
     {
-        return $this->request->getTestMode() ? $this->testEndpoint : $this->liveEndpoint;
+        return $this->request->getTestMode()
+            ? $this->testEndpoint
+            : $this->liveEndpoint;
     }
 }

@@ -20,13 +20,13 @@ class PurchaseCompleteResponse extends AbstractResponse
      */
     public function isSuccessful(): bool
     {
-        return $this->getCode() === '100';
+        return '100' === $this->getCode();
     }
 
     /**
      * Gateway Reference
      *
-     * @return null|string A reference provided by the gateway to represent this transaction
+     * @return string|null A reference provided by the gateway to represent this transaction
      */
     public function getTransactionReference(): ?string
     {

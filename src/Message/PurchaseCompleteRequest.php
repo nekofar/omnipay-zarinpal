@@ -10,8 +10,6 @@ declare(strict_types=1);
 
 namespace Omnipay\ZarinPal\Message;
 
-use Omnipay\Common\Exception\InvalidRequestException;
-
 /**
  * Class PurchaseCompleteRequest
  */
@@ -23,7 +21,7 @@ class PurchaseCompleteRequest extends AbstractRequest
      *
      * @return mixed
      *
-     * @throws InvalidRequestException
+     * @throws \Omnipay\Common\Exception\InvalidRequestException
      */
     public function getData()
     {

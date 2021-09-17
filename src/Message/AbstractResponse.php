@@ -42,7 +42,7 @@ abstract class AbstractResponse extends BaseAbstractResponse
     /**
      * Response Message
      *
-     * @return null|string A response message from the payment gateway
+     * @return string|null A response message from the payment gateway
      */
     public function getMessage(): ?string
     {
@@ -52,7 +52,7 @@ abstract class AbstractResponse extends BaseAbstractResponse
     /**
      * Response code
      *
-     * @return null|string A response code from the payment gateway
+     * @return string|null A response code from the payment gateway
      */
     public function getCode(): ?string
     {

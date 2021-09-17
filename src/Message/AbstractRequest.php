@@ -10,7 +10,6 @@ declare(strict_types=1);
 
 namespace Omnipay\ZarinPal\Message;
 
-use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Common\Exception\InvalidResponseException;
 use Omnipay\Common\Message\AbstractRequest as BaseAbstractRequest;
 use Omnipay\Common\Message\ResponseInterface;
@@ -42,16 +41,17 @@ abstract class AbstractRequest extends BaseAbstractRequest
     /**
      * @param array<integer|string, mixed> $data
      *
-     * @return PurchaseResponse|PurchaseCompleteResponse
+     * @return \Omnipay\ZarinPal\Message\{PurchaseResponse,PurchaseCompleteResponse}
      */
     abstract protected function createResponse(array $data);
 
     /**
-     * @throws InvalidRequestException
+     * @throws \Omnipay\Common\Exception\InvalidRequestException
      */
     public function getAmount(): string
     {
         $value = parent::getAmount();
+
         if ($value) {
             return $value;
         }
@@ -71,6 +71,7 @@ abstract class AbstractRequest extends BaseAbstractRequest
     public function getAuthority(): ?string
     {
         $value = $this->getParameter('authority');
+
         if (!$value) {
             return $value;
         }
@@ -125,7 +126,7 @@ abstract class AbstractRequest extends BaseAbstractRequest
      *
      * @param mixed $data The data to send.
      *
-     * @throws InvalidResponseException
+     * @throws \Omnipay\Common\Exception\InvalidResponseException
      */
     public function sendData($data): ResponseInterface
     {
@@ -137,15 +138,18 @@ abstract class AbstractRequest extends BaseAbstractRequest
                     'Accept' => 'application/json',
                     'Content-type' => 'application/json',
                 ],
-                json_encode($data)
+                json_encode($data),
             );
             $json = $httpResponse->getBody()->getContents();
-            $data = !empty($json) ? json_decode($json, true) : [];
+            $data = !empty($json)
+                ? json_decode($json, true)
+                : [];
+
             return $this->response = $this->createResponse($data);
         } catch (Throwable $e) {
             throw new InvalidResponseException(
                 'Error communicating with payment gateway: ' . $e->getMessage(),
-                $e->getCode()
+                $e->getCode(),
             );
         }
     }
@@ -154,6 +158,8 @@ abstract class AbstractRequest extends BaseAbstractRequest
      */
     protected function getEndpoint(): string
     {
-        return $this->getTestMode() ? $this->testEndpoint : $this->liveEndpoint;
+        return $this->getTestMode()
+            ? $this->testEndpoint
+            : $this->liveEndpoint;
     }
 }
