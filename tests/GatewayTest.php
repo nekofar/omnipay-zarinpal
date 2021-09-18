@@ -5,6 +5,7 @@ namespace Omnipay\ZarinPal\Tests;
 use Omnipay\Tests\GatewayTestCase;
 use Omnipay\ZarinPal\Gateway;
 use Omnipay\ZarinPal\Message\AbstractResponse;
+use Omnipay\ZarinPal\Message\PurchaseRequest;
 
 /**
  * Class GatewayTest
@@ -18,7 +19,7 @@ class GatewayTest extends GatewayTestCase
     protected $gateway;
 
     /**
-     * @var array<string, integer|string>
+     * @var array<string, integer|string|boolean>
      */
     protected $params;
 
@@ -112,5 +113,22 @@ class GatewayTest extends GatewayTestCase
 
         self::assertFalse($response->isSuccessful());
         self::assertSame('Merchant ID or Acceptor IP is not correct.', $response->getMessage());
+    }
+
+    /**
+     *
+     */
+    public function testTestMode(): void
+    {
+        parent::testTestMode();
+
+        $this->setMockHttpResponse('PurchaseSuccess.txt');
+
+        $this->params += ['testMode' => true];
+
+        /** @var AbstractResponse $response */
+        $response = $this->gateway->purchase($this->params)->send();
+
+        self::assertStringContainsString('sandbox', $response->getRedirectUrl());
     }
 }

@@ -72,7 +72,7 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * @param array<string, integer|string|float> $params
+     * @param array<string, integer|string|boolean> $params
      */
     public function purchase(array $params = []): RequestInterface
     {
@@ -80,7 +80,7 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * @param array<string, integer|string|float> $params
+     * @param array<string, integer|string|boolean> $params
      */
     public function completePurchase(array $params = []): RequestInterface
     {

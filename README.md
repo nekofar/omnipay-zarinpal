@@ -2,12 +2,13 @@
 
 **ZarinPal driver for the Omnipay PHP payment processing library**
 
-[![Packagist Version](https://img.shields.io/packagist/v/nekofar/omnipay-zarinpal.svg)][1]
-[![PHP from Packagist](https://img.shields.io/packagist/php-v/nekofar/omnipay-zarinpal.svg)][1]
-[![Travis (.com) branch](https://img.shields.io/travis/com/nekofar/omnipay-zarinpal/master.svg)][3]
-[![Codecov](https://img.shields.io/codecov/c/gh/nekofar/omnipay-zarinpal.svg)][4]
-[![Packagist](https://img.shields.io/packagist/l/nekofar/omnipay-zarinpal.svg)][2]
-[![Twitter: nekofar](https://img.shields.io/twitter/follow/nekofar.svg?style=flat)][7]
+[![Packagist Version][icon-packagist]][link-packagist]
+[![PHP from Packagist][icon-php-version]][link-packagist]
+[![Packagist Downloads][icon-downloads]][link-packagist]
+[![Tests Status][icon-workflow]][link-workflow]
+[![Coverage Status][icon-coverage]][link-coverage]
+[![License][icon-license]][link-license]
+[![Twitter: nekofar][icon-twitter]][link-twitter]
 
 [Omnipay](https://github.com/thephpleague/omnipay) is a framework agnostic, multi-gateway payment
 processing library for PHP. This package implements ZarinPal support for Omnipay.
@@ -106,3 +107,18 @@ or better yet, fork the library and submit a pull request.
 [5]: https://packagist.org/providers/php-http/client-implementation
 [6]: https://zarinpal.com
 [7]: https://twitter.com/nekofar
+
+[icon-packagist]: https://img.shields.io/packagist/v/nekofar/omnipay-zarinpal.svg
+[icon-php-version]: https://img.shields.io/packagist/php-v/nekofar/omnipay-zarinpal.svg
+[icon-workflow]: https://img.shields.io/github/workflow/status/nekofar/omnipay-zarinpal/Tests
+[icon-coverage]: https://codecov.io/gh/nekofar/omnipay-zarinpal/graph/badge.svg
+[icon-downloads]: https://img.shields.io/packagist/dt/nekofar/omnipay-zarinpal
+[icon-license]: https://img.shields.io/github/license/nekofar/omnipay-zarinpal.svg
+[icon-twitter]: https://img.shields.io/twitter/follow/nekofar.svg?style=flat
+
+[link-packagist]: https://packagist.org/packages/nekofar/omnipay-zarinpal
+[link-twitter]: https://twitter.com/nekofar
+[link-coverage]: https://codecov.io/gh/nekofar/omnipay-zarinpal
+[link-workflow]: https://github.com/nekofar/omnipay-zarinpal/actions/workflows/tests.yml
+[link-coverage]: https://codecov.io/gh/nekofar/omnipay-zarinpal
+[link-license]: https://github.com/nekofar/omnipay-zarinpal/blob/master/LICENSE.md
