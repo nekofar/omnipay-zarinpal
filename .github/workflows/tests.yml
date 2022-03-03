@@ -15,14 +15,25 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3.0.0
 
     - name: Setup PHP environment
-      uses: shivammathur/setup-php@v2
+      uses: shivammathur/setup-php@2.17.1
       with:
         php-version: ${{ matrix.php }}
         tools: composer:v2
         coverage: pcov
+
+    - name: Get Composer Cache Directory
+      id: composer-cache
+      run: |
+        echo "::set-output name=dir::$(composer config cache-files-dir)"
+    - uses: actions/cache@v2.1.7
+      with:
+        path: ${{ steps.composer-cache.outputs.dir }}
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-composer-
 
     - name: Setup problem matches
       run: |
@@ -36,7 +47,7 @@ jobs:
       run: ./vendor/bin/phpunit --testdox --coverage-clover coverage.xml
 
     - name: Collect test coverage
-      uses: codecov/codecov-action@v2
+      uses: codecov/codecov-action@v2.1.0
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         files: ./coverage.xml
