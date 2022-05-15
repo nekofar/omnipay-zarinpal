@@ -27,5 +27,7 @@
     <!-- Exclude the Node Modules directory. -->
     <exclude-pattern>/node_modules/*</exclude-pattern>
 
-    <rule ref="NekofarCodingStandard"/>
+    <rule ref="NekofarCodingStandard">
+      <exclude name="SlevomatCodingStandard.Classes.RequireAbstractOrFinal" />
+    </rule>
 </ruleset>
