@@ -1,53 +1,62 @@
 name: Tests
 
-on: ['push', 'pull_request']
+on: [ 'push', 'pull_request' ]
 
 jobs:
   ci:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        php: ['7.3', '7.4', '8.0']
-        dependency-version: [prefer-lowest, prefer-stable]
+        os: [ ubuntu-latest, macos-latest, windows-latest ]
+        php: [ '7.3', '7.4', '8.0', '8.1', '8.2' ]
+        dependency-version: [ prefer-lowest, prefer-stable ]
 
     name: PHP ${{ matrix.php }} - ${{ matrix.os }} - ${{ matrix.dependency-version }}
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3.2.0
+      - name: Checkout repository
+        uses: actions/checkout@v3.3.0
 
-    - name: Setup PHP environment
-      uses: shivammathur/setup-php@2.22.0
-      with:
-        php-version: ${{ matrix.php }}
-        tools: composer:v2
-        coverage: pcov
+      - name: Setup PHP environment
+        uses: shivammathur/setup-php@2.23.0
+        id: setup-php
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer:v2
+          coverage: pcov
 
-    - name: Get Composer Cache Directory
-      id: composer-cache
-      run: |
-        echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
-    - uses: actions/cache@v3.0.11
-      with:
-        path: ${{ steps.composer-cache.outputs.dir }}
-        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-composer-
+      - name: Get Composer Cache Directory
+        id: composer-cache-common
+        if: "${{ runner.os != 'Windows' }}"
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+      - name: Get Composer Cache Directory
+        id: composer-cache-windows
+        if: "${{ runner.os == 'Windows' }}"
+        run: echo "dir=$(composer config cache-files-dir)" >> $env:GITHUB_OUTPUT
+      - uses: actions/cache@v3.2.2
+        with:
+          path: ${{ steps.composer-cache-common.outputs.dir }}${{ steps.composer-cache-windows.outputs.dir }}
+          key: ${{ runner.os }}-${{ steps.setup-php.outputs.php-version }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ steps.setup-php.outputs.php-version }}-composer-
 
-    - name: Setup problem matches
-      run: |
-        echo "::add-matcher::${{ runner.tool_cache }}/php.json"
-        echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+      - name: Setup problem matches
+        run: |
+          echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+          echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
-    - name: Install PHP dependencies
-      run: composer update --${{ matrix.dependency-version }} --no-interaction --no-progress --ansi
+      - name: Install PHP dependencies
+        run: composer update --${{ matrix.dependency-version }} --no-interaction --no-progress --ansi
 
-    - name: Run unit tests by phpunit
-      run: ./vendor/bin/phpunit --testdox --coverage-clover coverage.xml
+      - name: Run unit tests by phpunit
+        run: ./vendor/bin/phpunit --testdox --coverage-clover coverage.xml
 
-    - name: Collect test coverage
-      uses: codecov/codecov-action@v3.1.1
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        files: ./coverage.xml
+      - name: Collect test coverage
+        uses: codecov/codecov-action@v3.1.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage.xml
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true

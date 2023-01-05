@@ -110,7 +110,7 @@ or better yet, fork the library and submit a pull request.
 
 [icon-packagist]: https://img.shields.io/packagist/v/nekofar/omnipay-zarinpal.svg
 [icon-php-version]: https://img.shields.io/packagist/php-v/nekofar/omnipay-zarinpal.svg
-[icon-workflow]: https://img.shields.io/github/workflow/status/nekofar/omnipay-zarinpal/Tests
+[icon-workflow]: https://img.shields.io/github/actions/workflow/status/nekofar/omnipay-zarinpal/tests.yml
 [icon-coverage]: https://codecov.io/gh/nekofar/omnipay-zarinpal/graph/badge.svg
 [icon-downloads]: https://img.shields.io/packagist/dt/nekofar/omnipay-zarinpal
 [icon-license]: https://img.shields.io/github/license/nekofar/omnipay-zarinpal.svg
