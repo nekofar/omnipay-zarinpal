@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.8] - 2023-01-05
+
+### <!-- 07 -->Continuous Integrations
+
+- Add a new `release` workflow to create releases
+
 ## [1.3.7] - 2023-01-05
 
 ### <!-- 05 -->Documentation
@@ -16,6 +22,10 @@ All notable changes to this project will be documented in this file.
 - Bump actions/cache from 3.0.11 to 3.2.2
 - Add `php` version ^8.1 and ^8.2 to `tests` workflow
 - Solve issues regarding composer cache on windows on `tests` workflow
+
+### <!-- 08 -->Miscellaneous Tasks
+
+- Migrate from semver to git cliff for changelogs
 
 ## [1.3.6] - 2022-12-14
 
