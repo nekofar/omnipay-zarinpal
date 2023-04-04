@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.9] - 2023-04-04
+
+### <!-- 05 -->Documentation
+
+- Update twitter badge due to depreciation
+
+### <!-- 07 -->Continuous Integrations
+
+- Bump actions/cache from 3.2.2 to 3.2.3
+- Bump orhun/git-cliff-action from 2.0.1 to 2.0.3
+- Bump shivammathur/setup-php from 2.23.0 to 2.24.0 
+- Bump orhun/git-cliff-action from 2.0.3 to 2.0.5 
+- Bump actions/cache from 3.2.3 to 3.3.1 
+- Bump actions/checkout from 3.2.0 to 3.5.0 
+
 ## [1.3.8] - 2023-01-05
 
 ### <!-- 07 -->Continuous Integrations

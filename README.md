@@ -114,7 +114,7 @@ or better yet, fork the library and submit a pull request.
 [icon-coverage]: https://codecov.io/gh/nekofar/omnipay-zarinpal/graph/badge.svg
 [icon-downloads]: https://img.shields.io/packagist/dt/nekofar/omnipay-zarinpal
 [icon-license]: https://img.shields.io/github/license/nekofar/omnipay-zarinpal.svg
-[icon-twitter]: https://img.shields.io/twitter/follow/nekofar.svg?style=flat
+[icon-twitter]: https://img.shields.io/badge/follow-%40nekofar-1DA1F2?logo=twitter&style=flat
 
 [link-packagist]: https://packagist.org/packages/nekofar/omnipay-zarinpal
 [link-twitter]: https://twitter.com/nekofar
