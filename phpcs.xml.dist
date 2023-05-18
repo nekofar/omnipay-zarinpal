@@ -28,6 +28,5 @@
     <exclude-pattern>/node_modules/*</exclude-pattern>
 
     <rule ref="NekofarCodingStandard">
-      <exclude name="SlevomatCodingStandard.Classes.RequireAbstractOrFinal" />
     </rule>
 </ruleset>
