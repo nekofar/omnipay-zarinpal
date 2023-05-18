@@ -1,7 +1,8 @@
 {
   "name": "nekofar/omnipay-zarinpal",
-  "type": "library",
   "description": "ZarinPal driver for the Omnipay PHP payment processing library",
+  "license": "MIT",
+  "type": "library",
   "keywords": [
     "omnipay",
     "zarinpal",
@@ -10,14 +11,13 @@
     "payment",
     "purchase"
   ],
-  "homepage": "https://github.com/nekofar/omnipay-zarinpal",
-  "license": "MIT",
   "authors": [
     {
       "name": "Milad Nekofar",
       "email": "milad@nekofar.com"
     }
   ],
+  "homepage": "https://github.com/nekofar/omnipay-zarinpal",
   "require": {
     "php": "^7.3 || ^8.0",
     "ext-json": "*",
@@ -33,11 +33,8 @@
     "phpstan/phpstan-phpunit": "^0.12.22",
     "phpstan/phpstan-beberlei-assert": "^0.12.6"
   },
-  "extra": {
-    "branch-alias": {
-      "dev-master": "1.0.x-dev"
-    }
-  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "autoload": {
     "psr-4": {
       "Omnipay\\ZarinPal\\": "src/"
@@ -48,12 +45,6 @@
       "Omnipay\\ZarinPal\\Tests\\": "tests/"
     }
   },
-  "minimum-stability": "dev",
-  "prefer-stable": true,
-  "scripts": {
-    "lint": "phpcs",
-    "test": "phpunit"
-  },
   "config": {
     "allow-plugins": {
       "dealerdirect/phpcodesniffer-composer-installer": true,
@@ -63,5 +54,14 @@
       "composer/installers": true,
       "php-http/discovery": true
     }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
+    }
+  },
+  "scripts": {
+    "lint": "phpcs",
+    "test": "phpunit"
   }
 }
