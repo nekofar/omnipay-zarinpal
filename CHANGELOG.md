@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.10] - 2023-05-18
+
+### <!-- 07 -->Continuous Integrations
+
+- Bump codecov/codecov-action from 3.1.1 to 3.1.2 
+- Bump actions/checkout from 3.5.0 to 3.5.2 
+- Bump shivammathur/setup-php from 2.24.0 to 2.25.0 
+- Bump shivammathur/setup-php from 2.25.0 to 2.25.1 
+- Bump codecov/codecov-action from 3.1.2 to 3.1.3 
+- Bump orhun/git-cliff-action from 2.0.5 to 2.0.6 
+- Change `open-pull-requests-limit` from 10 to 20
+- Bump codecov/codecov-action from 3.1.3 to 3.1.4 
+
 ## [1.3.9] - 2023-04-04
 
 ### <!-- 05 -->Documentation
