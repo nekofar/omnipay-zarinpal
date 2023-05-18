@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.11] - 2023-05-18
+
+### <!-- 08 -->Miscellaneous Tasks
+
+- Update `composer` config state
+
 ## [1.3.10] - 2023-05-18
 
 ### <!-- 07 -->Continuous Integrations
