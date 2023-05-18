@@ -1,7 +1,8 @@
 {
   "name": "nekofar/omnipay-zarinpal",
-  "type": "library",
   "description": "ZarinPal driver for the Omnipay PHP payment processing library",
+  "license": "MIT",
+  "type": "library",
   "keywords": [
     "omnipay",
     "zarinpal",
@@ -10,34 +11,33 @@
     "payment",
     "purchase"
   ],
-  "homepage": "https://github.com/nekofar/omnipay-zarinpal",
-  "license": "MIT",
   "authors": [
     {
       "name": "Milad Nekofar",
       "email": "milad@nekofar.com"
     }
   ],
+  "homepage": "https://github.com/nekofar/omnipay-zarinpal",
   "require": {
-    "php": "^7.3 || ^8.0",
+    "php": ">=8.1",
     "ext-json": "*",
+    "http-interop/http-factory-guzzle": "^1.2",
+    "moneyphp/money": "^4.1",
     "omnipay/common": "^3.1",
-    "symfony/http-client": "^6.2",
     "php-http/message-factory": "^1.1",
-    "http-interop/http-factory-guzzle": "^1.2"
+    "symfony/http-client": "^6.2",
+    "symfony/http-foundation": "^6.0"
   },
   "require-dev": {
-    "omnipay/tests": "^4.1",
     "nekofar/dev-tools": "^1.1",
-    "phpstan/phpstan-strict-rules": "^0.12.11",
+    "omnipay/tests": "^4.1",
+    "phpstan/phpstan-beberlei-assert": "^0.12.6",
     "phpstan/phpstan-phpunit": "^0.12.22",
-    "phpstan/phpstan-beberlei-assert": "^0.12.6"
+    "phpstan/phpstan-strict-rules": "^0.12.11",
+    "phpunit/phpunit": "^9.6"
   },
-  "extra": {
-    "branch-alias": {
-      "dev-master": "1.0.x-dev"
-    }
-  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "autoload": {
     "psr-4": {
       "Omnipay\\ZarinPal\\": "src/"
@@ -48,12 +48,6 @@
       "Omnipay\\ZarinPal\\Tests\\": "tests/"
     }
   },
-  "minimum-stability": "dev",
-  "prefer-stable": true,
-  "scripts": {
-    "lint": "phpcs",
-    "test": "phpunit"
-  },
   "config": {
     "allow-plugins": {
       "dealerdirect/phpcodesniffer-composer-installer": true,
@@ -63,5 +57,14 @@
       "composer/installers": true,
       "php-http/discovery": true
     }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
+    }
+  },
+  "scripts": {
+    "lint": "phpcs",
+    "test": "phpunit"
   }
 }

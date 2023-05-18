@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0] - 2023-05-18
+
+### <!-- 07 -->Continuous Integrations
+
+- Drop support for php version `<8.1` on workflows
+
+### <!-- 08 -->Miscellaneous Tasks
+
+- Normalize composer configurations
+- [**breaking**] Drop support for php version `<8.1`
+
 ## [1.3.11] - 2023-05-18
 
 ### <!-- 08 -->Miscellaneous Tasks
