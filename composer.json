@@ -70,5 +70,11 @@
   "scripts": {
     "lint": "phpcs",
     "test": "phpunit"
-  }
+  },
+  "funding": [
+    {
+      "type": "custom",
+      "url": "https://ud.me/nekofar.crypto"
+    }
+  ]
 }
